@@ -12,7 +12,6 @@ from fixtures.person import *
 from fixtures.spendings import *
 from fixtures.profile import *
 from teadowns.spending import *
-from teadowns.logout import *
 
 
 @pytest.fixture(scope="session")
