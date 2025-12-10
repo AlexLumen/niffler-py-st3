@@ -6,10 +6,11 @@
 import os
 
 from dotenv import load_dotenv
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Browser
 from fixtures.authorization import *
 from fixtures.person import *
 from fixtures.spendings import *
+from fixtures.profile import *
 from teadowns.spending import *
 from teadowns.logout import *
 
@@ -27,6 +28,11 @@ def frontend_url(envs):
 @pytest.fixture(scope="session")
 def api_url(envs):
     return os.getenv("GATEWAY_URL")
+
+
+@pytest.fixture(scope="session")
+def auth_url(envs):
+    return os.getenv("AUTH_URL")
 
 
 @pytest.fixture(scope="session")
@@ -53,7 +59,7 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope="function")
-def browser(frontend_url):
+def browser(request, frontend_url):
     """
     Фикстура, запускающая браузер через Playwright
     """
@@ -65,8 +71,9 @@ def browser(frontend_url):
 
              ] + (["--start-fullscreen"]),
     )
-    context = browser.new_context(ignore_https_errors=True)
 
+    context = browser.new_context(ignore_https_errors=True)
+    context.storage_state(path="./user.json")
     page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
@@ -76,17 +83,25 @@ def browser(frontend_url):
     page.open_browser = open_browser
     page.open_browser()
 
-    yield page
+    def teardown():
+        context.close()
+        browser.close()
+        playwright.stop()
 
-    context.close()
-    browser.close()
-    playwright.stop()
+    request.addfinalizer(teardown)
+
+    return browser, page
 
 
 @pytest.fixture(scope="function")
-def spends_client(api_url, get_access_token) -> SpendsHttpClient:
+def page_with_auth(browser):
+    """Страница с предустановленной авторизацией"""
+    context = browser[0].new_context(storage_state="./niffler_user.json")
+    page = context.new_page()
 
-    return SpendsHttpClient(api_url, get_access_token)
+    yield page
+
+    context.close()
 
 
 @pytest.fixture(scope="function")
@@ -97,5 +112,5 @@ def get_access_token(browser):
     Returns:
         str or None: Значение access_token или None, если не найден
     """
-    token = browser.evaluate("window.localStorage.getItem('id_token')")
+    token = browser[1].evaluate("window.localStorage.getItem('id_token')")
     return token

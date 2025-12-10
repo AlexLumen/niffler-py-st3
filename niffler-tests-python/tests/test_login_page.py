@@ -2,14 +2,13 @@
 Тесты страницы авторизации
 """
 import pytest
-from dotenv import load_dotenv
 
-from Pages.LoginPage.LoginPage import LoginPage
-from Pages.MainPage.MainPage import MainPage
-from Pages.RegistrationPage.RegistrationPage import RegistrationPage
-from Pages.elements.HeaderElement.HeaderElement import HeaderElement
-from Pages.elements.LogoutAlertElement.LogoutAlertElement import LogoutAlertElement
-from Pages.elements.Navbar.NavbarElement import NavbarElement
+from Pages.LoginPage import LoginPage
+from Pages.MainPage import MainPage
+from Pages.RegistrationPage import RegistrationPage
+from Pages.elements.HeaderElement import HeaderElement
+from Pages.elements.LogoutAlertElement import LogoutAlertElement
+from Pages.elements.NavbarElement import NavbarElement
 
 
 def test_success_login(browser, user_creds):

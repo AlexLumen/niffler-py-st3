@@ -9,11 +9,13 @@ finance = Finance()
 text_generator = Text()
 
 
-
+@pytest.fixture(scope="function")
+def spends_client(api_url, get_access_token) -> SpendsHttpClient:
+    return SpendsHttpClient(api_url, get_access_token)
 
 
 @pytest.fixture
-def int_value():
+def price_value():
     return finance.price()
 
 
@@ -31,3 +33,9 @@ def description_value():
 def currency():
     currencies_list_symbols = ["₸", "₽", "€", "$"]
     return choice(currencies_list_symbols)
+
+
+@pytest.fixture
+def create_category(spends_client, category_value):
+    category = spends_client.add_category(name=category_value)
+    return category

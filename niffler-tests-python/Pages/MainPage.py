@@ -1,21 +1,21 @@
 """
     Методы работы с главной страницей
 """
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
 
 from Pages.BasePage import BasePage
-from Pages.MainPage.MainPageLocators import MainPageLocators
+
 
 
 class MainPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
-        self.history_spendings = browser.locator("[id='spendings']")
-        self.no_spending_text = browser.locator("//p[contains(text(), 'There are no spendings')]")
-        self.category_name = browser.locator(".MuiTableRow-root>.MuiTableCell-root:nth-child(2)>span")
-        self.category_name_sell = browser.locator(".MuiTableRow-root>.MuiTableCell-root:nth-child(2)")
-        self.amount_value = browser.locator('.MuiTableRow-root>.MuiTableCell-root:nth-child(3)>span')
-        self.description_value = browser.locator( '.MuiTableRow-root>.MuiTableCell-root:nth-child(4)>span')
+        self.history_spendings = browser[1].locator("[id='spendings']")
+        self.no_spending_text = browser[1].locator("//p[contains(text(), 'There are no spendings')]")
+        self.category_name = browser[1].locator(".MuiTableRow-root>.MuiTableCell-root:nth-child(2)>span")
+        self.category_name_sell = browser[1].locator(".MuiTableRow-root>.MuiTableCell-root:nth-child(2)")
+        self.amount_value = browser[1].locator('.MuiTableRow-root>.MuiTableCell-root:nth-child(3)>span')
+        self.description_value = browser[1].locator('.MuiTableRow-root>.MuiTableCell-root:nth-child(4)>span')
 
     def check_spendings_block_visibility(self):
         """
@@ -51,4 +51,3 @@ class MainPage(BasePage):
         identify = self.get_element_attribute_from_list_by_text(self.category_name_sell, category_name, 'id')[
               24:]
         return identify
-

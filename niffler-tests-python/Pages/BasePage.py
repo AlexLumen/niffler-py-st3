@@ -1,12 +1,9 @@
-
-import allure
 from playwright.sync_api import Page, expect
 
 
-
 class BasePage:
-    def __init__(self, page: Page):
-        self.browser = page
+    def __init__(self, browser):
+        self.browser = browser[1]
 
     def is_element_present(self, locator):
         try:
@@ -17,7 +14,6 @@ class BasePage:
 
     def open_url(self, url):
         self.browser.goto(url)
-
 
     def get_element_attribute_from_list_by_text(self, locator, text, attribute_name):
         """
@@ -38,8 +34,6 @@ class BasePage:
         self.browser.wait_for_load_state("domcontentloaded")
         filtered = locator.filter(has_text=expected_value)
         expect(filtered).to_be_visible()
-
-
 
     def chose_element_in_list_by_text(self, locator, text):
         elements = locator

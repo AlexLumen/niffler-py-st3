@@ -1,13 +1,11 @@
 import pytest
 
-from Pages.MainPage.MainPage import MainPage
-from clients.spends import SpendsHttpClient
+from Pages.MainPage import MainPage
 
 
 @pytest.fixture
-def delete_spending(request, browser, category_value, spends_client, get_access_token):
+def delete_spending(request, browser, category_value, spends_client):
     def teardown():
-        print("spends_client" ,spends_client)
         main_page = MainPage(browser)
         identify = main_page.get_id_attribute_created_spending(category_value)
         print(identify)
@@ -15,6 +13,18 @@ def delete_spending(request, browser, category_value, spends_client, get_access_
         categories = spends_client.get_categories()
         for category in categories:
             if category['name'] == category_value:
+                category['archived'] = True
+                spends_client.update_category(category)
+
+    request.addfinalizer(teardown)
+
+
+@pytest.fixture
+def archive_category(request, browser, category_value, spends_client):
+    def teardown():
+        categories = spends_client.get_categories()
+        for category in categories:
+            if category['name'] in [category_value, f"{category_value}_edited"]:
                 category['archived'] = True
                 spends_client.update_category(category)
 

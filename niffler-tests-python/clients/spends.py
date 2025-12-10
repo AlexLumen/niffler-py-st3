@@ -23,7 +23,7 @@ class SpendsHttpClient:
 
     def add_category(self, name: str):
         response = self.session.post(urljoin(self.base_url, "/api/categories/add"), json={
-            "category": name
+            "name": name
         })
         response.raise_for_status()
         return response.json()

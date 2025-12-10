@@ -4,8 +4,8 @@
 
 import pytest
 
-from Pages.LoginPage.LoginPage import LoginPage
-from Pages.RegistrationPage.RegistrationPage import RegistrationPage
+from Pages.LoginPage import LoginPage
+from Pages.RegistrationPage import RegistrationPage
 
 
 def test_success_registration(browser, user_data):

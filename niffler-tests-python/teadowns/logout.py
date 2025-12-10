@@ -1,10 +1,3 @@
-import pytest
-
-from Pages.elements.HeaderElement.HeaderElement import HeaderElement
-from Pages.elements.LogoutAlertElement.LogoutAlertElement import LogoutAlertElement
-from Pages.elements.Navbar.NavbarElement import NavbarElement
-
-
 # @pytest.fixture(scope='function')
 # def logout(request, user_creds, browser):
 #     def teardown():

@@ -1,23 +1,22 @@
 from playwright.sync_api import expect
 
 from Pages.BasePage import BasePage
-from Pages.RegistrationPage.RegistrationPageLocators import RegistrationPageLocators
 
 
 class RegistrationPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
-        self.registration_from = browser.locator("[id='register-form']")
-        self.username_input = browser.locator("[id='username']")
-        self.password_input = browser.locator("[id='password']")
-        self.submit_password_input = browser.locator("[id='passwordSubmit']")
-        self.submit_password_input_error_message = browser.locator("//label[contains(text(), 'Submit password')]/span")
-        self.sign_up_button = browser.locator("[type='submit']")
-        self.success_registration_message = browser.locator(".form__paragraph_success")
-        self.login_url = browser.get_by_text("Log in!")
-        self.sign_in_button = browser.get_by_text("Sign in")
-        self.username_input_error_message = browser.locator("//label[contains(text(), 'Username')]/span")
-        self.password_input_error_message = browser.locator("//label[contains(text(), 'Password')]/span")
+        self.registration_from = browser[1].locator("[id='register-form']")
+        self.username_input = browser[1].locator("[id='username']")
+        self.password_input = browser[1].locator("[id='password']")
+        self.submit_password_input = browser[1].locator("[id='passwordSubmit']")
+        self.submit_password_input_error_message = browser[1].locator("//label[contains(text(), 'Submit password')]/span")
+        self.sign_up_button = browser[1].locator("[type='submit']")
+        self.success_registration_message = browser[1].locator(".form__paragraph_success")
+        self.login_url = browser[1].get_by_text("Log in!")
+        self.sign_in_button = browser[1].get_by_text("Sign in")
+        self.username_input_error_message = browser[1].locator("//label[contains(text(), 'Username')]/span")
+        self.password_input_error_message = browser[1].locator("//label[contains(text(), 'Password')]/span")
 
     def check_visibility_registration_from(self):
         expect(self.registration_from).to_be_visible()

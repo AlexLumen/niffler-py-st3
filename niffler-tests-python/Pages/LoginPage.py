@@ -9,14 +9,14 @@ class LoginPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
         self.login_page_url = os.getenv('FRONT_URL')
-        self.login_form = browser.locator("[action='/login']")
-        self.title = browser.locator(".header")
-        self.user_name_field = browser.locator("[name='username']")
-        self.password_field = browser.locator("[name='password']")
-        self.login_button = browser.locator(".form__submit")
-        self.registration_url_button = browser.locator(".form__register")
-        self.new_account_button = browser.locator("[href='/register']")
-        self.error_message = browser.locator(".form__error")
+        self.login_form = browser[1].locator("[action='/login']")
+        self.title = browser[1].locator(".header")
+        self.user_name_field = browser[1].locator("[name='username']")
+        self.password_field = browser[1].locator("[name='password']")
+        self.login_button = browser[1].locator(".form__submit")
+        self.registration_url_button = browser[1].locator(".form__register")
+        self.new_account_button = browser[1].locator("[href='/register']")
+        self.error_message = browser[1].locator(".form__error")
 
     def open_login_page(self):
         self.open_url(self.login_page_url)
