@@ -3,24 +3,37 @@ from Pages.BasePage import BasePage
 
 
 class AddSpendingPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.amount_field = browser.locator("[id='amount']")
+        self.currency_select = browser.locator("[id='currency']")
+        self.currency_item = browser.locator(".MuiPaper-root>.MuiList-padding>li>span:nth-child(1)")
+        self.category_field = browser.locator("[id='category']")
+        self.description_field = browser.locator("[id='description']")
+        self.cancel_button = browser.locator("[id='cancel']")
+        self.add_button = browser.locator("[id='save']")
 
     def send_amount(self, value):
-        self.send_text(*AddSpendingPageLocators.AMOUNT_FIELD, value)
+        self.amount_field.fill(str(value))
 
     def click_currency_select(self):
-        self.click_element(*AddSpendingPageLocators.CURRENCY_SELECT)
+        self.currency_select.click()
 
     def choose_currency_from_list(self, currency):
-        self.chose_element_in_list_by_text(*AddSpendingPageLocators.CURRENCY_ITEM, currency)
+        self.chose_element_in_list_by_text(self.currency_item, currency)
+
+
+
+       # self.chose_element_in_list_by_text(self.currency_item, currency)
 
     def send_category(self, value):
-        self.send_text(*AddSpendingPageLocators.CATEGORY_FIELD, value)
+        self.category_field.fill(value)
 
     def send_description(self, value):
-        self.send_text(*AddSpendingPageLocators.DESCRIPTION_FIELD, value)
+        self.description_field.fill(value)
 
     def click_cancel_button(self):
-        self.click_element(*AddSpendingPageLocators.CANCEL_BUTTON)
+        self.cancel_button.click()
 
     def click_add_button(self):
-        self.click_element(*AddSpendingPageLocators.ADD_BUTTON)
+        self.add_button.click()

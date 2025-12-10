@@ -4,21 +4,14 @@
     Конфиг для тестов
 """
 import os
-import time
-from os import getenv
-import pytest
+
 from dotenv import load_dotenv
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
-from Pages.elements.HeaderElement.HeaderElement import HeaderElement
-from Pages.elements.LogoutAlertElement.LogoutAlertElement import LogoutAlertElement
-from Pages.elements.Navbar.NavbarElement import NavbarElement
+from playwright.sync_api import sync_playwright
 from fixtures.authorization import *
 from fixtures.person import *
 from fixtures.spendings import *
 from teadowns.spending import *
+from teadowns.logout import *
 
 
 @pytest.fixture(scope="session")
@@ -32,85 +25,77 @@ def frontend_url(envs):
 
 
 @pytest.fixture(scope="session")
-def gateway_url(envs):
+def api_url(envs):
     return os.getenv("GATEWAY_URL")
 
 
 @pytest.fixture(scope="session")
-def app_user(envs):
-    return os.getenv("USER_NAME"), os.getenv("PASSWORD")
+def user_creds(envs):
+    return {
+        'user_name': os.getenv('USER_NAME'),
+        'password': os.getenv('PASSWORD'),
+    }
 
 
-@pytest.fixture(scope='session')
-def browser(request, frontend_url):
-    """Фикстура, открывающая браузер"""
-    options = Options()
+def pytest_addoption(parser):
+    parser.addoption(
+        "--headless",
+        action="store_true",
+        default=False,
+        help="Запускать в headless‑режиме"
+    )
+    parser.addoption(
+        "--no-headless",
+        action="store_false",
+        dest="headless",
+        help="Запускать с GUI (отменяет --headless)"
+    )
 
-    options.add_argument("--start-maximized")
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--incognito')
-    options.add_argument('--ignore-certificate-errors-spki-list')
-    options.add_argument('--ignore-ssl-errors')
-    options.add_argument("--ignore-certificate-errors")
 
-    driver = webdriver.Chrome(options=options)
+@pytest.fixture(scope="function")
+def browser(frontend_url):
+    """
+    Фикстура, запускающая браузер через Playwright
+    """
+    playwright = sync_playwright().start()
+
+    browser = playwright.chromium.launch(
+        headless=False,
+        args=[
+
+             ] + (["--start-fullscreen"]),
+    )
+    context = browser.new_context(ignore_https_errors=True)
+
+    page = context.new_page()
+    page.set_viewport_size({"width": 1920, "height": 1080})
 
     def open_browser(url=frontend_url):
-        """
-            Открыть браузер
-        """
-        return driver.get(url)
+        page.goto(url, wait_until="domcontentloaded")
 
-    driver.maximize_window()
-    driver.open_browser = open_browser
-    driver.open_browser()
-    request.addfinalizer(driver.quit)
+    page.open_browser = open_browser
+    page.open_browser()
 
-    return driver
+    yield page
 
-
-@pytest.fixture(scope='session')
-def login_user(browser, app_user):
-    username, password = app_user
-    login_page = LoginPage(browser)
-    main_page = MainPage(browser)
-    login_page.send_user_name(username)
-    login_page.send_password(password)
-    login_page.click_login_button()
-    main_page.check_spendings_block_visibility()
-
-    return browser.execute_script('return localStorage.getItem("id_token");')
+    context.close()
+    browser.close()
+    playwright.stop()
 
 
 @pytest.fixture(scope="function")
-def logout(request, browser):
-    def teardown():
-        navbar = NavbarElement(browser)
-        header_element = HeaderElement(browser)
-        login_page = LoginPage(browser)
-        logout_alert_element = LogoutAlertElement(browser)
-        header_element.click_person_icon()
-        navbar.click_sign_out_button()
-        logout_alert_element.click_logout_button()
-        login_page.check_login_button_visibility()
+def spends_client(api_url, get_access_token) -> SpendsHttpClient:
 
-    request.addfinalizer(teardown)
+    return SpendsHttpClient(api_url, get_access_token)
 
 
 @pytest.fixture(scope="function")
-def auth_page(request, browser, frontend_url):
-    def teardown():
-        browser.get(frontend_url)
+def get_access_token(browser):
+    """
+    Получить access_token из localStorage.
 
-    request.addfinalizer(teardown)
-
-
-@pytest.fixture()
-def main_page(login_user, frontend_url):
-    pass
-
-
-@pytest.fixture(scope="session")
-def spends_client(gateway_url, login_user) -> SpendsHttpClient:
-    return SpendsHttpClient(gateway_url, login_user)
+    Returns:
+        str or None: Значение access_token или None, если не найден
+    """
+    token = browser.evaluate("window.localStorage.getItem('id_token')")
+    return token

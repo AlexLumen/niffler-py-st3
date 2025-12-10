@@ -1,29 +1,43 @@
 import os
 
+from playwright.sync_api import expect
+
 from Pages.BasePage import BasePage
-from Pages.LoginPage.LoginPageLocators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    def __init__(self, browser):
+        super().__init__(browser)
+        self.login_page_url = os.getenv('FRONT_URL')
+        self.login_form = browser.locator("[action='/login']")
+        self.title = browser.locator(".header")
+        self.user_name_field = browser.locator("[name='username']")
+        self.password_field = browser.locator("[name='password']")
+        self.login_button = browser.locator(".form__submit")
+        self.registration_url_button = browser.locator(".form__register")
+        self.new_account_button = browser.locator("[href='/register']")
+        self.error_message = browser.locator(".form__error")
+
+    def open_login_page(self):
+        self.open_url(self.login_page_url)
 
     def check_visibility_login_form(self):
-        self.verify_element_visibility(*LoginPageLocators.LOGIN_FORM)
+        expect(self.login_form).to_be_visible()
 
     def send_user_name(self, user_name):
-        self.send_text(*LoginPageLocators.USER_NAME_FIELD, user_name)
+        self.user_name_field.fill(user_name)
 
     def send_password(self, password):
-        self.send_text(*LoginPageLocators.PASSWORD_FIELD, password)
+        self.password_field.fill(password)
 
     def click_login_button(self):
-        self.click_element(*LoginPageLocators.LOGIN_BUTTON)
+        self.login_button.click()
 
     def check_login_button_visibility(self):
-        self.verify_element_visibility(*LoginPageLocators.LOGIN_BUTTON)
+        expect(self.login_button).to_be_visible()
 
     def click_create_new_account_button(self):
-        self.click_element(*LoginPageLocators.NEW_ACCOUNT_BUTTON)
+        self.new_account_button.click()
 
     def check_invalid_creds_error_message(self):
-        error_message = self.get_text(*LoginPageLocators.ERROR_MESSAGE)
-        self.assertion(error_message, "Неверные учетные данные пользователя")
+        expect(self.error_message).to_contain_text("Неверные учетные данные пользователя")

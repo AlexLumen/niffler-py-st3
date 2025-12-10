@@ -3,8 +3,13 @@ from random import choice
 import pytest
 from mimesis import Text, Finance
 
+from clients.spends import SpendsHttpClient
+
 finance = Finance()
 text_generator = Text()
+
+
+
 
 
 @pytest.fixture

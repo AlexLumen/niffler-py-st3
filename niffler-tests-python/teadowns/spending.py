@@ -5,10 +5,12 @@ from clients.spends import SpendsHttpClient
 
 
 @pytest.fixture
-def delete_spending(request, browser, category_value, spends_client):
+def delete_spending(request, browser, category_value, spends_client, get_access_token):
     def teardown():
+        print("spends_client" ,spends_client)
         main_page = MainPage(browser)
         identify = main_page.get_id_attribute_created_spending(category_value)
+        print(identify)
         spends_client.remove_spends(ids=identify)
         categories = spends_client.get_categories()
         for category in categories:
