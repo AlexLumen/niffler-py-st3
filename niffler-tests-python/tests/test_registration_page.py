@@ -8,7 +8,8 @@ from Pages.LoginPage import LoginPage
 from Pages.RegistrationPage import RegistrationPage
 
 
-def test_success_registration(browser, user_data):
+@pytest.mark.usefixtures("delete_user")
+def test_success_registration(browser, user_data, user_db):
     login_page = LoginPage(browser)
     registration_page = RegistrationPage(browser)
     login_page.click_create_new_account_button()
@@ -17,6 +18,8 @@ def test_success_registration(browser, user_data):
     registration_page.send_submit_password(user_data['submit_password'])
     registration_page.click_sign_up_button()
     registration_page.check_success_registration_message()
+    user_in_db = user_db.get_user_by_username(user_data['username'])
+    assert user_in_db.username == user_data['username']
 
 
 @pytest.mark.parametrize(
@@ -72,6 +75,7 @@ def test_go_to_login_page_from_registration_page(browser):
     login_page.check_visibility_login_form()
 
 
+@pytest.mark.usefixtures("delete_user")
 def test_go_to_login_page_from_success_registration_page(browser, user_data):
     login_page = LoginPage(browser)
     registration_page = RegistrationPage(browser)

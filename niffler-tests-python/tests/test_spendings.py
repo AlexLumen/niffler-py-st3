@@ -3,6 +3,7 @@ import pytest
 from Pages.AddSpendingPage import AddSpendingPage
 from Pages.MainPage import MainPage
 from Pages.elements.HeaderElement import HeaderElement
+from helpers.currency import currencies
 
 
 @pytest.mark.usefixtures("login_user")
@@ -19,7 +20,7 @@ def test_cancel_add_spending(browser, price_value, category_value, description_v
 
 
 @pytest.mark.usefixtures("login_user", "delete_spending")
-def test_success_add_spending(browser, price_value, category_value, description_value, currency):
+def test_success_add_spending(envs, spend_db, browser, price_value, category_value, description_value, currency):
     add_spending_page = AddSpendingPage(browser)
     header_element = HeaderElement(browser)
     main_page = MainPage(browser)
@@ -30,8 +31,12 @@ def test_success_add_spending(browser, price_value, category_value, description_
     add_spending_page.choose_currency_from_list(currency)
     add_spending_page.send_description(description_value)
     add_spending_page.click_add_button()
-    main_page.check_added_spend_visibility(category_value, f"{price_value} {currency}")
+    main_page.check_added_spend_visibility(category_value, f"{price_value} {currencies[currency]}")
     main_page.get_id_attribute_created_spending(category_value)
+    spend_in_db = spend_db.get_spend_in_db(envs.username)
+    assert spend_in_db[0].amount == price_value
+    assert spend_in_db[0].description == description_value
+    assert spend_in_db[0].currency == currency
 
 
 @pytest.mark.usefixtures("login_user")

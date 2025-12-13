@@ -1,0 +1,7 @@
+
+currencies = {
+    "RUB": "₽",
+    "KZT": "₸",
+    "EUR": "€",
+    "USD": "$"
+}

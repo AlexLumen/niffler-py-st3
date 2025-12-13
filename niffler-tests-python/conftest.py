@@ -7,39 +7,60 @@ import os
 
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
+
+from database.authority_db import AuthorityDb
+from database.category_db import CategoriesDb
+from database.spend_db import SpendDb
+from database.user_db import UserDb
 from fixtures.authorization import *
 from fixtures.person import *
 from fixtures.spendings import *
 from fixtures.profile import *
+from models.config import Envs
 from teadowns.spending import *
+from teadowns.categories import *
+from teadowns.users import *
 
 
 @pytest.fixture(scope="session")
-def envs():
+def envs() -> Envs:
     load_dotenv()
-
-
-@pytest.fixture(scope="session")
-def frontend_url(envs):
-    return os.getenv("FRONT_URL")
-
-
-@pytest.fixture(scope="session")
-def api_url(envs):
-    return os.getenv("GATEWAY_URL")
-
-
-@pytest.fixture(scope="session")
-def auth_url(envs):
-    return os.getenv("AUTH_URL")
+    return Envs(frontend_url=os.getenv("FRONT_URL"),
+                gateway_url=os.getenv("GATEWAY_URL"),
+                auth_url=os.getenv("AUTH_URL"),
+                spend_db_url=os.getenv("SPEND_DB_URL"),
+                username=os.getenv('USER_NAME'),
+                password=os.getenv('PASSWORD'),
+                auth_db_url=os.getenv("AUTH_DB_URL")
+                )
 
 
 @pytest.fixture(scope="session")
 def user_creds(envs):
     return {
-        'user_name': os.getenv('USER_NAME'),
-        'password': os.getenv('PASSWORD'),
+        'user_name': envs.username,
+        'password': envs.password,
     }
+
+
+@pytest.fixture(scope="session")
+def spend_db(envs) -> SpendDb:
+    return SpendDb(envs.spend_db_url)
+
+
+@pytest.fixture(scope="session")
+def category_db(envs) -> CategoriesDb:
+    return CategoriesDb(envs.spend_db_url)
+
+
+@pytest.fixture(scope="session")
+def user_db(envs) -> UserDb:
+    return UserDb(envs.auth_db_url)
+
+
+@pytest.fixture(scope="session")
+def authority_db(envs) -> AuthorityDb:
+    return AuthorityDb(envs.auth_db_url)
 
 
 def pytest_addoption(parser):
@@ -58,7 +79,7 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture(scope="function")
-def browser(request, frontend_url):
+def browser(request, envs):
     """
     Фикстура, запускающая браузер через Playwright
     """
@@ -76,7 +97,7 @@ def browser(request, frontend_url):
     page = context.new_page()
     page.set_viewport_size({"width": 1920, "height": 1080})
 
-    def open_browser(url=frontend_url):
+    def open_browser(url=envs.frontend_url):
         page.goto(url, wait_until="domcontentloaded")
 
     page.open_browser = open_browser

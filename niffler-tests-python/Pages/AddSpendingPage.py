@@ -8,7 +8,7 @@ class AddSpendingPage(BasePage):
         super().__init__(browser)
         self.amount_field = browser[1].locator("[id='amount']")
         self.currency_select = browser[1].locator("[id='currency']")
-        self.currency_item = browser[1].locator(".MuiPaper-root>.MuiList-padding>li>span:nth-child(1)")
+        self.currency_item = browser[1].locator(".MuiPaper-root>.MuiList-padding>li>span:nth-child(2)")
         self.category_field = browser[1].locator("[id='category']")
         self.description_field = browser[1].locator("[id='description']")
         self.cancel_button = browser[1].locator("[id='cancel']")
