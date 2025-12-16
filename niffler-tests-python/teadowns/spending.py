@@ -1,12 +1,10 @@
 import pytest
 
-from Pages.MainPage import MainPage
 
 
 @pytest.fixture
-def delete_spending(request, browser, category_value, spends_client):
+def delete_spending(request, main_page, page, category_value, spends_client):
     def teardown():
-        main_page = MainPage(browser)
         identify = main_page.get_id_attribute_created_spending(category_value)
         print(identify)
         spends_client.remove_spends(ids=identify)
@@ -20,7 +18,7 @@ def delete_spending(request, browser, category_value, spends_client):
 
 
 @pytest.fixture
-def archive_category(request, browser, category_value, spends_client):
+def archive_category(request, page, category_value, spends_client):
     def teardown():
         categories = spends_client.get_categories()
         for category in categories:

@@ -5,13 +5,21 @@
 """
 import os
 
+import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
-from fixtures.authorization import *
-from fixtures.person import *
-from fixtures.spendings import *
-from fixtures.profile import *
-from teadowns.spending import *
+from fixtures.authorization import login_user, login_page
+from fixtures.person import person_generator, user_data
+from fixtures.spendings import (spends_client, price_value, category_value,
+                                description_value, currency, create_category, add_spending_page)
+from fixtures.profile import open_profile_page, profile_page
+from fixtures.alerts import archive_category_alert, logout_alert
+from fixtures.header_element import header_element
+from fixtures.main_page import main_page
+from fixtures.navbar import navbar_element
+from fixtures.registration import registration_page
+from models.user_auth import UserAuth
+from teadowns.spending import delete_spending, archive_category
 
 
 @pytest.fixture(scope="session")
@@ -36,41 +44,33 @@ def auth_url(envs):
 
 @pytest.fixture(scope="session")
 def user_creds(envs):
-    return {
-        'user_name': os.getenv('USER_NAME'),
-        'password': os.getenv('PASSWORD'),
-    }
+    return UserAuth(user_name=os.getenv('USER_NAME'), password=os.getenv('PASSWORD'))
 
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--headless",
-        action="store_true",
-        default=False,
-        help="Запускать в headless‑режиме"
+        "--headless"
     )
     parser.addoption(
-        "--no-headless",
-        action="store_false",
-        dest="headless",
-        help="Запускать с GUI (отменяет --headless)"
+        "--no-headless"
     )
 
 
 @pytest.fixture(scope="function")
-def browser(request, frontend_url):
-    """
-    Фикстура, запускающая браузер через Playwright
-    """
+def browser(request):
     playwright = sync_playwright().start()
+    browser = playwright.chromium.launch(headless=False, args=["--start-fullscreen"])
 
-    browser = playwright.chromium.launch(
-        headless=False,
-        args=[
+    def teardown():
+        browser.close()
+        playwright.stop()
 
-             ] + (["--start-fullscreen"]),
-    )
+    request.addfinalizer(teardown)
+    return browser
 
+
+@pytest.fixture(scope="function")
+def page(browser, frontend_url):
     context = browser.new_context(ignore_https_errors=True)
     context.storage_state(path="./user.json")
     page = context.new_page()
@@ -82,34 +82,16 @@ def browser(request, frontend_url):
     page.open_browser = open_browser
     page.open_browser()
 
-    def teardown():
-        context.close()
-        browser.close()
-        playwright.stop()
-
-    request.addfinalizer(teardown)
-
-    return browser, page
+    return page
 
 
 @pytest.fixture(scope="function")
-def page_with_auth(browser):
-    """Страница с предустановленной авторизацией"""
-    context = browser[0].new_context(storage_state="./niffler_user.json")
-    page = context.new_page()
-
-    yield page
-
-    context.close()
-
-
-@pytest.fixture(scope="function")
-def get_access_token(browser):
+def get_access_token(page):
     """
     Получить access_token из localStorage.
 
     Returns:
         str or None: Значение access_token или None, если не найден
     """
-    token = browser[1].evaluate("window.localStorage.getItem('id_token')")
+    token = page.evaluate("window.localStorage.getItem('id_token')")
     return token

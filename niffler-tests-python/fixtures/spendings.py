@@ -4,6 +4,7 @@ import pytest
 from mimesis import Text, Finance
 
 from clients.spends import SpendsHttpClient
+from pages.add_spending_page import AddSpendingPage
 
 finance = Finance()
 text_generator = Text()
@@ -26,7 +27,8 @@ def category_value():
 
 @pytest.fixture
 def description_value():
-    return text_generator.sentence()
+    sentence = text_generator.sentence()
+    return sentence[:40]
 
 
 @pytest.fixture
@@ -39,3 +41,9 @@ def currency():
 def create_category(spends_client, category_value):
     category = spends_client.add_category(name=category_value)
     return category
+
+
+@pytest.fixture
+def add_spending_page(page):
+    add_spending_page = AddSpendingPage(page)
+    return add_spending_page

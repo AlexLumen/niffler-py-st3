@@ -1,15 +1,9 @@
 import pytest
 
-from Pages.AddSpendingPage import AddSpendingPage
-from Pages.MainPage import MainPage
-from Pages.elements.HeaderElement import HeaderElement
-
 
 @pytest.mark.usefixtures("login_user")
-def test_cancel_add_spending(browser, price_value, category_value, description_value):
-    add_spending_page = AddSpendingPage(browser)
-    header_element = HeaderElement(browser)
-    main_page = MainPage(browser)
+def test_cancel_add_spending(add_spending_page, main_page, header_element,
+                             page, price_value, category_value, description_value):
     header_element.click_add_spending_button()
     add_spending_page.send_amount(price_value)
     add_spending_page.send_category(category_value)
@@ -19,10 +13,8 @@ def test_cancel_add_spending(browser, price_value, category_value, description_v
 
 
 @pytest.mark.usefixtures("login_user", "delete_spending")
-def test_success_add_spending(browser, price_value, category_value, description_value, currency):
-    add_spending_page = AddSpendingPage(browser)
-    header_element = HeaderElement(browser)
-    main_page = MainPage(browser)
+def test_success_add_spending(add_spending_page, page, main_page, header_element,
+                              price_value, category_value, description_value, currency):
     header_element.click_add_spending_button()
     add_spending_page.send_amount(price_value)
     add_spending_page.send_category(category_value)
@@ -35,10 +27,9 @@ def test_success_add_spending(browser, price_value, category_value, description_
 
 
 @pytest.mark.usefixtures("login_user")
-def test_empty_amount_message_visibility_if_add_spending_without_amount(browser, category_value, description_value,
-                                                                        currency):
-    add_spending_page = AddSpendingPage(browser)
-    header_element = HeaderElement(browser)
+def test_empty_amount_message_visibility_if_add_spending_without_amount(add_spending_page, page,
+                                                                        category_value, description_value,
+                                                                        header_element, currency):
     header_element.click_add_spending_button()
     add_spending_page.send_category(category_value)
     add_spending_page.click_currency_select()
@@ -49,10 +40,9 @@ def test_empty_amount_message_visibility_if_add_spending_without_amount(browser,
 
 
 @pytest.mark.usefixtures("login_user")
-def test_empty_category_message_visibility_if_add_spending_without_category(browser, price_value, description_value,
-                                                                            currency):
-    add_spending_page = AddSpendingPage(browser)
-    header_element = HeaderElement(browser)
+def test_empty_category_message_visibility_if_add_spending_without_category(add_spending_page,
+                                                                            page, price_value, description_value,
+                                                                            header_element, currency):
     header_element.click_add_spending_button()
     add_spending_page.send_amount(price_value)
     add_spending_page.click_currency_select()
