@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+../../Новая папка/.env
 .envrc
 .venv
 env/

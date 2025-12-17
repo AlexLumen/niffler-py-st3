@@ -22,6 +22,7 @@ def user_data(person_generator):
     data = {
         "username": person_generator.username(),
         "password": password,
-        "submit_password": password
+        "submit_password": password,
+        "first_name": person_generator.first_name()
     }
     return data
