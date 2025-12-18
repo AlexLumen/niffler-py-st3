@@ -1,9 +1,9 @@
 import pytest
 
-from Pages.ProfilePage import ProfilePage
-from Pages.elements.ArchiveCategoryAlertElement import ArchiveCategoryAlertElement
-from Pages.elements.HeaderElement import HeaderElement
-from Pages.elements.NavbarElement import NavbarElement
+from pages.ProfilePage import ProfilePage
+from pages.elements.ArchiveCategoryAlertElement import ArchiveCategoryAlertElement
+from pages.elements.HeaderElement import HeaderElement
+from pages.elements.NavbarElement import NavbarElement
 
 
 @pytest.mark.usefixtures("open_profile_page", "delete_category")

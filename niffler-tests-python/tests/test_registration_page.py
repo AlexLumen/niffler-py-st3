@@ -4,8 +4,8 @@
 
 import pytest
 
-from Pages.LoginPage import LoginPage
-from Pages.RegistrationPage import RegistrationPage
+from pages.LoginPage import LoginPage
+from pages.RegistrationPage import RegistrationPage
 
 
 @pytest.mark.usefixtures("delete_user")

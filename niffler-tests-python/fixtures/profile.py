@@ -1,8 +1,7 @@
 import pytest
 
-from Pages.ProfilePage import ProfilePage
-from Pages.elements.HeaderElement import HeaderElement
-from Pages.elements.NavbarElement import NavbarElement
+from pages.elements.HeaderElement import HeaderElement
+from pages.elements.NavbarElement import NavbarElement
 
 
 @pytest.fixture

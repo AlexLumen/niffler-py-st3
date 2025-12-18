@@ -3,12 +3,12 @@
 """
 import pytest
 
-from Pages.LoginPage import LoginPage
-from Pages.MainPage import MainPage
-from Pages.RegistrationPage import RegistrationPage
-from Pages.elements.HeaderElement import HeaderElement
-from Pages.elements.LogoutAlertElement import LogoutAlertElement
-from Pages.elements.NavbarElement import NavbarElement
+from pages.LoginPage import LoginPage
+from pages.MainPage import MainPage
+from pages.RegistrationPage import RegistrationPage
+from pages.elements.HeaderElement import HeaderElement
+from pages.elements.LogoutAlertElement import LogoutAlertElement
+from pages.elements.NavbarElement import NavbarElement
 
 
 def test_success_login(browser, user_creds):

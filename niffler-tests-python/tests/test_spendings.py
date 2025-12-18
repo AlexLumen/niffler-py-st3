@@ -1,8 +1,8 @@
 import pytest
 
-from Pages.AddSpendingPage import AddSpendingPage
-from Pages.MainPage import MainPage
-from Pages.elements.HeaderElement import HeaderElement
+from pages.AddSpendingPage import AddSpendingPage
+from pages.MainPage import MainPage
+from pages.elements.HeaderElement import HeaderElement
 from helpers.currency import currencies
 
 

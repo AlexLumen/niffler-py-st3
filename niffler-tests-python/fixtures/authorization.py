@@ -3,7 +3,7 @@
 """
 import pytest
 
-from Pages.LoginPage import LoginPage
+from pages.LoginPage import LoginPage
 
 
 @pytest.fixture(scope='function')
