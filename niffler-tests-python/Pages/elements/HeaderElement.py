@@ -2,7 +2,7 @@
     Методы работы с элементов Header
 """
 
-from Pages.BasePage import BasePage
+from pages.BasePage import BasePage
 
 
 class HeaderElement(BasePage):

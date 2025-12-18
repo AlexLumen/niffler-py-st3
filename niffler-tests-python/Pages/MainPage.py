@@ -3,8 +3,7 @@
 """
 from playwright.sync_api import expect
 
-from Pages.BasePage import BasePage
-
+from pages.BasePage import BasePage
 
 
 class MainPage(BasePage):
@@ -49,5 +48,5 @@ class MainPage(BasePage):
 
     def get_id_attribute_created_spending(self, category_name):
         identify = self.get_element_attribute_from_list_by_text(self.category_name_sell, category_name, 'id')[
-              24:]
+                   24:]
         return identify

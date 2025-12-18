@@ -2,7 +2,7 @@
     Методы работы с окном подтверждения вылогина
 """
 
-from Pages.BasePage import BasePage
+from pages.BasePage import BasePage
 
 
 class LogoutAlertElement(BasePage):

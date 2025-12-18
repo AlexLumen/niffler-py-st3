@@ -1,7 +1,7 @@
 """
    Методы работы с меню
 """
-from Pages.BasePage import BasePage
+from pages.BasePage import BasePage
 
 
 class NavbarElement(BasePage):

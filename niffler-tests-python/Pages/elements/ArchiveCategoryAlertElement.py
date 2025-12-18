@@ -1,4 +1,4 @@
-from Pages.BasePage import BasePage
+from pages.BasePage import BasePage
 
 
 class ArchiveCategoryAlertElement(BasePage):
