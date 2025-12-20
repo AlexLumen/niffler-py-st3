@@ -10,16 +10,41 @@ class Input(Component):
         return 'input'
 
     def fill(self, value, **kwargs):
-        with allure.step(f'ввести {self.type_of} "{self.name}" значение "{value}"'):
-            locator = self.get_locator(**kwargs)
-            locator.fill(value)
+        try:
+            with allure.step(f'Ввести в {self.type_of} "{self.name}" значение "{value}"'):
+                locator = self.get_locator(**kwargs)
+                locator.fill(value)
+        except Exception:
+            allure.attach(
+                name="screen",
+                body=self.page.screenshot(),
+                attachment_type=allure.attachment_type.PNG
+            )
+            raise Exception(f'Не удалось ввести в {self.type_of} "{self.name}" значение "{value}"')
 
     def focus(self, **kwargs):
-        with allure.step(f'Навести курсов на {self.type_of} "{self.name}" '):
-            locator = self.get_locator(**kwargs)
-            locator.focus()
+        try:
+            with allure.step(f'Навести курсор на {self.type_of} "{self.name}"'):
+                locator = self.get_locator(**kwargs)
+                locator.focus()
+        except Exception:
+            allure.attach(
+                name="screen",
+                body=self.page.screenshot(),
+                attachment_type=allure.attachment_type.PNG
+            )
+            raise Exception(f'Не удалось навести курсор на {self.type_of} "{self.name}"')
 
     def press(self, key, **kwargs):
-        with allure.step(f'Нажать на клавиатуре на элементе {self.type_of} "{self.name}" '):
-            locator = self.get_locator(**kwargs)
-            locator.press(key)
+        try:
+            with allure.step(f'Нажать на клавиатуре на элементе {self.type_of} "{self.name}" '):
+                locator = self.get_locator(**kwargs)
+                locator.press(key)
+        except Exception:
+            allure.attach(
+                name="screen",
+                body=self.page.screenshot(),
+                attachment_type=allure.attachment_type.PNG
+            )
+            raise KeyboardInterrupt(f'Не удалось нажать на клавиатуре на элементе {self.type_of} "{self.name}"')
+

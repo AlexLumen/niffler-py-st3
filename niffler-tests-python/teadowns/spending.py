@@ -1,12 +1,10 @@
 import pytest
 
 
-
 @pytest.fixture
 def delete_spending(request, main_page, page, category_value, spends_client):
     def teardown():
         identify = main_page.get_id_attribute_created_spending(category_value)
-        print(identify)
         spends_client.remove_spends(ids=identify)
         categories = spends_client.get_categories()
         for category in categories:

@@ -11,8 +11,8 @@ text_generator = Text()
 
 
 @pytest.fixture(scope="function")
-def spends_client(api_url, get_access_token) -> SpendsHttpClient:
-    return SpendsHttpClient(api_url, get_access_token)
+def spends_client(envs, get_access_token) -> SpendsHttpClient:
+    return SpendsHttpClient(envs.gateway_url, get_access_token)
 
 
 @pytest.fixture
@@ -38,8 +38,13 @@ def currency():
 
 
 @pytest.fixture
-def create_category(spends_client, category_value):
+def create_category(request, spends_client, category_db, category_value):
     category = spends_client.add_category(name=category_value)
+
+    def teardown():
+        category_db.delete_category(category['id'])
+
+    request.addfinalizer(teardown)
     return category
 
 

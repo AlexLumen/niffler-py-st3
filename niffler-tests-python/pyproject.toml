@@ -14,7 +14,12 @@ dependencies = [
     "mimesis (==18.0.0)",
     "requests (==2.32.5)",
     "pytest-playwright (==0.7.2)",
-    "playwright (==1.56)"
+    "playwright (==1.56)",
+    "requests-toolbelt (==1.0.0)",
+    "psycopg2-binary (==2.9.11)",
+    "sqlalchemy (==2.0.44)",
+    "sqlmodel (==0.0.27)",
+    "pydantic (==2.12.4)"
 
 ]
 
@@ -23,7 +28,11 @@ dependencies = [
 package-mode = false
 
 [tool.pytest]
+addopts = [
+  "--alluredir=./allure-results"
+]
 playwright_headless = false
+
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
