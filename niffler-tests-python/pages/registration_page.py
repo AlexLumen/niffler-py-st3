@@ -43,7 +43,7 @@ class RegistrationPage:
         self.sign_up_button.click()
 
     def check_success_registration_message(self):
-        self.success_registration_message.should_have_text("Congratulations! You've registered!")
+        self.success_registration_message.should_have_text("Congratulations! You've registered!!")
 
     def check_invalid_length_message_on_username_field(self):
         self.username_input_error_message.should_have_text(

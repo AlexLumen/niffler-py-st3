@@ -7,8 +7,7 @@ from components.navbar_element import NavbarElement
 
 @pytest.fixture
 def profile_page(page):
-    profile_page = ProfilePage(page)
-    return profile_page
+    return ProfilePage(page)
 
 
 @pytest.fixture

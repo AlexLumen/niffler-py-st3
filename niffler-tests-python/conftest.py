@@ -81,11 +81,22 @@ def allure_logger(config) -> AllureReporter:
 
 
 @pytest.hookimpl(hookwrapper=True, trylast=True)
-def pytest_runtest_call(item: Item):
-    yield
+def pytest_runtest_call(item: pytest.Item):
+    """
+    Хук, срабатывающий при выполнении тела теста (после setup, перед teardown).
+    Если тест падает — делаем скриншот и прикрепляем к Allure.
+    """
+    outcome = yield
 
-
-# allure.dynamic.title(" ".join(item.name.split("_")[1:]).title())
+    if outcome.excinfo is not None:
+        page = item.funcargs.get("page")
+        if page is not None and hasattr(page, "screenshot"):
+            screenshot = page.screenshot()
+            allure.attach(
+                name="screenshotе",
+                body=screenshot,
+                attachment_type=allure.attachment_type.PNG
+            )
 
 
 @pytest.hookimpl(hookwrapper=True, trylast=True)

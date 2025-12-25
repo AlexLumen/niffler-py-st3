@@ -50,5 +50,5 @@ def create_category(request, spends_client, category_db, category_value):
 
 @pytest.fixture
 def add_spending_page(page):
-    add_spending_page = AddSpendingPage(page)
-    return add_spending_page
+    return AddSpendingPage(page)
+
