@@ -4,6 +4,7 @@ import pytest
 from mimesis import Text, Finance
 
 from clients.spends import SpendsHttpClient
+from pages.add_spending_page import AddSpendingPage
 
 finance = Finance()
 text_generator = Text()
@@ -25,22 +26,19 @@ def category_value():
 
 
 @pytest.fixture
-def category_value_edited():
-    return text_generator.word()
-
-@pytest.fixture
 def description_value():
-    return text_generator.sentence()
+    sentence = text_generator.sentence()
+    return sentence[:40]
 
 
 @pytest.fixture
 def currency():
-    currencies_list = ["RUB", "KZT", "EUR", "USD"]
-    return choice(currencies_list)
+    currencies_list_symbols = ["₸", "₽", "€", "$"]
+    return choice(currencies_list_symbols)
 
 
 @pytest.fixture
-def create_category(request, spends_client, category_value, category_db, envs):
+def create_category(request, spends_client, category_db, category_value):
     category = spends_client.add_category(name=category_value)
 
     def teardown():
@@ -48,3 +46,9 @@ def create_category(request, spends_client, category_value, category_db, envs):
 
     request.addfinalizer(teardown)
     return category
+
+
+@pytest.fixture
+def add_spending_page(page):
+    return AddSpendingPage(page)
+

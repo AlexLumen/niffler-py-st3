@@ -5,6 +5,7 @@
 """
 import os
 
+import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
 
@@ -12,14 +13,24 @@ from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
 from database.spend_db import SpendDb
 from database.user_db import UserDb
-from fixtures.authorization import *
-from fixtures.person import *
-from fixtures.spendings import *
-from fixtures.profile import *
+from fixtures.authorization import login_user, login_page
+from fixtures.person import person_generator, user_data
+from fixtures.spendings import (spends_client, price_value, category_value,
+                                description_value, currency, create_category, add_spending_page)
+from fixtures.profile import open_profile_page, profile_page
+from fixtures.alerts import archive_category_alert, logout_alert
+from fixtures.header_element import header_element
+from fixtures.main_page import main_page
+from fixtures.navbar import navbar_element
+from fixtures.registration import registration_page
 from models.config import Envs
-from teadowns.spending import *
-from teadowns.categories import *
-from teadowns.users import *
+from models.user_auth import UserAuth
+from teadowns.spending import delete_spending, archive_category
+import allure
+from allure_commons.reporter import AllureReporter
+from allure_commons.types import AttachmentType
+from allure_pytest.listener import AllureListener
+from pytest import Item, FixtureDef, FixtureRequest
 
 
 @pytest.fixture(scope="session")
@@ -33,14 +44,6 @@ def envs() -> Envs:
                 password=os.getenv('PASSWORD'),
                 auth_db_url=os.getenv("AUTH_DB_URL")
                 )
-
-
-@pytest.fixture(scope="session")
-def user_creds(envs):
-    return {
-        'user_name': envs.username,
-        'password': envs.password,
-    }
 
 
 @pytest.fixture(scope="session")
@@ -65,33 +68,69 @@ def authority_db(envs) -> AuthorityDb:
 
 def pytest_addoption(parser):
     parser.addoption(
-        "--headless",
-        action="store_true",
-        default=False,
-        help="Запускать в headless‑режиме"
+        "--headless"
     )
     parser.addoption(
-        "--no-headless",
-        action="store_false",
-        dest="headless",
-        help="Запускать с GUI (отменяет --headless)"
+        "--no-headless"
     )
+
+
+def allure_logger(config) -> AllureReporter:
+    listener: AllureListener = config.pluginmanager.get_plugin("allure_listener")
+    return listener.allure_logger
+
+
+@pytest.hookimpl(hookwrapper=True, trylast=True)
+def pytest_runtest_call(item: pytest.Item):
+    """
+    Хук, срабатывающий при выполнении тела теста (после setup, перед teardown).
+    Если тест падает — делаем скриншот и прикрепляем к Allure.
+    """
+    outcome = yield
+
+    if outcome.excinfo is not None:
+        page = item.funcargs.get("page")
+        if page is not None and hasattr(page, "screenshot"):
+            screenshot = page.screenshot()
+            allure.attach(
+                name="screenshotе",
+                body=screenshot,
+                attachment_type=allure.attachment_type.PNG
+            )
+
+
+@pytest.hookimpl(hookwrapper=True, trylast=True)
+def pytest_fixture_setup(fixturedef: FixtureDef, request: FixtureRequest):
+    yield
+    logger = allure_logger(request.config)
+    item = logger.get_last_item()
+    scope_letter = fixturedef.scope[0].upper()
+    item.name = f"[{scope_letter}] " + " ".join(fixturedef.argname.split("_")).title()
+
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_teardown(item):
+    yield
+    reporter = allure_logger(item.config)
+    test = reporter.get_test(None)
+    test.labels = list(filter(lambda x: x.name not in ("suite", "subSuite", "parentSuite"), test.labels))
 
 
 @pytest.fixture(scope="function")
-def browser(request, envs):
-    """
-    Фикстура, запускающая браузер через Playwright
-    """
+def browser(request):
     playwright = sync_playwright().start()
+    browser = playwright.chromium.launch(headless=False, args=["--start-fullscreen"])
 
-    browser = playwright.chromium.launch(
-        headless=False,
-        args=[
+    def teardown():
+        browser.close()
+        playwright.stop()
 
-             ] + (["--start-fullscreen"]),
-    )
+    request.addfinalizer(teardown)
+    return browser
 
+
+@pytest.fixture(scope="function")
+def page(browser, envs):
     context = browser.new_context(ignore_https_errors=True)
     context.storage_state(path="./user.json")
     page = context.new_page()
@@ -103,34 +142,16 @@ def browser(request, envs):
     page.open_browser = open_browser
     page.open_browser()
 
-    def teardown():
-        context.close()
-        browser.close()
-        playwright.stop()
-
-    request.addfinalizer(teardown)
-
-    return browser, page
+    return page
 
 
 @pytest.fixture(scope="function")
-def page_with_auth(browser):
-    """Страница с предустановленной авторизацией"""
-    context = browser[0].new_context(storage_state="./niffler_user.json")
-    page = context.new_page()
-
-    yield page
-
-    context.close()
-
-
-@pytest.fixture(scope="function")
-def get_access_token(browser):
+def get_access_token(page):
     """
     Получить access_token из localStorage.
 
     Returns:
         str or None: Значение access_token или None, если не найден
     """
-    token = browser[1].evaluate("window.localStorage.getItem('id_token')")
+    token = page.evaluate("window.localStorage.getItem('id_token')")
     return token

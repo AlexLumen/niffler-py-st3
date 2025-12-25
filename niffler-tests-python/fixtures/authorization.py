@@ -3,17 +3,21 @@
 """
 import pytest
 
-from pages.LoginPage import LoginPage
+from pages.login_page import LoginPage
+
+
+@pytest.fixture
+def login_page(page):
+    return LoginPage(page)
 
 
 @pytest.fixture(scope='function')
-def login_user(request, user_creds, browser):
-    login_page = LoginPage(browser)
+def login_user(request, envs, login_page, page, browser):
     login_page.open_login_page()
-    login_page.send_user_name(user_creds['user_name'])
-    login_page.send_password(user_creds['password'])
+    login_page.send_user_name(envs.username)
+    login_page.send_password(envs.password)
     login_page.click_login_button()
-    context = browser[0].new_context(ignore_https_errors=True)
+    context = browser.new_context(ignore_https_errors=True)
     context.storage_state(path="./user.json")
 
-    return browser[1].evaluate("window.localStorage.getItem('id_token')")
+    return page.evaluate("window.localStorage.getItem('id_token')")
