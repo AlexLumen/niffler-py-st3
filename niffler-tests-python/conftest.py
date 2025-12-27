@@ -9,6 +9,7 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
 
+from clients.oauth_client import OAuthClient
 from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
 from database.spend_db import SpendDb
@@ -34,16 +35,18 @@ from pytest import Item, FixtureDef, FixtureRequest
 
 
 @pytest.fixture(scope="session")
-def envs() -> Envs:
+def envs():
     load_dotenv()
-    return Envs(frontend_url=os.getenv("FRONT_URL"),
-                gateway_url=os.getenv("GATEWAY_URL"),
-                auth_url=os.getenv("AUTH_URL"),
-                spend_db_url=os.getenv("SPEND_DB_URL"),
-                username=os.getenv('USER_NAME'),
-                password=os.getenv('PASSWORD'),
-                auth_db_url=os.getenv("AUTH_DB_URL")
-                )
+    envs_instance = Envs(frontend_url=os.getenv("FRONT_URL"),
+                         gateway_url=os.getenv("GATEWAY_URL"),
+                         auth_url=os.getenv("AUTH_URL"),
+                         spend_db_url=os.getenv("SPEND_DB_URL"),
+                         username=os.getenv('USER_NAME'),
+                         password=os.getenv('PASSWORD'),
+                         auth_db_url=os.getenv("AUTH_DB_URL")
+                         )
+    allure.attach(envs_instance.model_dump_json(indent=2), name="envs.json", attachment_type=AttachmentType.JSON)
+    return envs_instance
 
 
 @pytest.fixture(scope="session")
@@ -145,13 +148,6 @@ def page(browser, envs):
     return page
 
 
-@pytest.fixture(scope="function")
-def get_access_token(page):
-    """
-    Получить access_token из localStorage.
-
-    Returns:
-        str or None: Значение access_token или None, если не найден
-    """
-    token = page.evaluate("window.localStorage.getItem('id_token')")
-    return token
+@pytest.fixture(scope="session")
+def auth_token(envs: Envs):
+    return OAuthClient(envs).get_token(envs.username, envs.password)

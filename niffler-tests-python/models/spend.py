@@ -12,3 +12,11 @@ class Spend(SQLModel, table=True):
     spend_date: datetime
     currency: str
     username: str
+
+
+class SpendAdd(BaseModel):
+    amount: float
+    description: str
+    category: str
+    spendDate: str
+    currency: str

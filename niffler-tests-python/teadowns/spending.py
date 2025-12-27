@@ -8,10 +8,10 @@ def delete_spending(request, main_page, page, category_value, spends_client):
         spends_client.remove_spends(ids=identify)
         categories = spends_client.get_categories()
         for category in categories:
-            if category['name'] == category_value:
-                category['archived'] = True
-                spends_client.update_category(category)
-
+            if category.name == category_value:
+                category.archived = True
+                category_dict = category.model_dump()
+                spends_client.update_category(category_dict)
     request.addfinalizer(teardown)
 
 
@@ -20,8 +20,9 @@ def archive_category(request, page, category_value, spends_client):
     def teardown():
         categories = spends_client.get_categories()
         for category in categories:
-            if category['name'] in [category_value, f"{category_value}_edited"]:
-                category['archived'] = True
-                spends_client.update_category(category)
+            if category.name in [category_value, f"{category_value}_edited"]:
+                category.archived = True
+                category_dict = category.model_dump()
+                spends_client.update_category(category_dict)
 
     request.addfinalizer(teardown)

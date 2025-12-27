@@ -3,7 +3,7 @@ import allure
 from allure_commons.types import AttachmentType
 from sqlalchemy import create_engine, Engine, event
 from sqlmodel import Session, select
-
+from utils.allure_helpers import attach_sql
 from models.category import Category
 
 
@@ -12,13 +12,7 @@ class CategoriesDb:
 
     def __init__(self, db_url: str):
         self.engine = create_engine(db_url)
-        event.listen(self.engine, "do_execute", fn=self.attach_sql)
-
-    @staticmethod
-    def attach_sql(cursor, statement, parameters, context):
-        statement_with_params = statement % parameters
-        name = statement.split(" ")[0] + " " + context.engine.url.database
-        allure.attach(statement_with_params, name=name, attachment_type=AttachmentType.TEXT)
+        event.listen(self.engine, "do_execute", fn=attach_sql)
 
     def get_category_by_name(self, username: str, category_name: str):
         with Session(self.engine) as session:

@@ -8,3 +8,5 @@ class Envs(BaseModel):
     auth_db_url: str
     username: str
     password: str
+    auth_url: str
+
