@@ -26,9 +26,9 @@ def test_edit_category(create_category, navbar_element, profile_page, header_ele
     header_element.click_person_icon()
     navbar_element.click_profile_link()
     profile_page.click_edit_category_button()
-    profile_page.send_category_name_in_edit_input(create_category['name'])
+    profile_page.send_category_name_in_edit_input(create_category.name)
     profile_page.press_enter_in_edit_category_name()
-    profile_page.check_edited_category(create_category['name'])
+    profile_page.check_edited_category(create_category.name)
 
 
 @allure.feature("Страница Профиль")

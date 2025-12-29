@@ -2,55 +2,72 @@ from urllib.parse import urljoin
 
 import allure
 import requests
+from allure import step
 from requests import Response
 from allure_commons.types import AttachmentType
 from requests_toolbelt.utils.dump import dump_response
+
+from models.category import Category
+from models.config import Envs
+from models.spend import Spend, SpendAdd, SpendEdit
+from utils.sessions import BaseSession
 
 
 class SpendsHttpClient:
     session: requests.Session
     base_url: str
 
-    def __init__(self, base_url: str, token: str, ):
-        self.base_url = base_url
-        self.session = requests.session()
+    def __init__(self, envs, token: str):
+        self.base_url = envs.gateway_url
+        self.session = BaseSession(base_url=self.base_url)
         self.session.headers.update({
             'Accept': 'application/json',
             'Authorization': f'Bearer {token}',
             'Content-Type': 'application/json'
         })
-        self.session.hooks["response"].append(self.attach_response)
 
-    @staticmethod
-    def attach_response(response: Response, *args, **kwargs):
-        attachment_name = response.request.method + " " + response.request.url
-        allure.attach(dump_response(response), attachment_name, attachment_type=AttachmentType.TEXT)
+    @step("Отправить запрос на список категорий")
+    def get_categories(self) -> list[Category]:
+        response = self.session.get("/api/categories/all")
+        return [Category.model_validate(item) for item in response.json()]
 
-    def get_categories(self):
-        response = self.session.get(urljoin(self.base_url, "/api/categories/all"))
-        response.raise_for_status()
-        return response.json()
-
-    def add_category(self, name: str):
-        response = self.session.post(urljoin(self.base_url, "/api/categories/add"), json={
+    @step("Отправить запрос на создание категории")
+    def add_category(self, name) -> Category:
+        response = self.session.post("/api/categories/add", json={
             "name": name
         })
-        response.raise_for_status()
-        return response.json()
+        return Category.model_validate(response.json())
 
-    def add_spends(self, body):
-        url = urljoin(self.base_url, "/api/spends/add")
-        response = self.session.post(url, json=body)
-        response.raise_for_status()
-        return response.json()
+    @step("Отправить запрос на получение списка трат")
+    def get_spend(self, spend_id: int) -> Spend:
+        response = self.session.get(f"/api/spends/{spend_id}")
+        return Spend.model_validate(response.json())
 
-    def remove_spends(self, ids: str):
-        url = urljoin(self.base_url, "/api/spends/remove")
-        response = self.session.delete(url, params={"ids": ids})
-        response.raise_for_status()
+    @step("Отправить запрос на получение списка трат")
+    def get_spends(self) -> list[Spend]:
+        response = self.session.get("/api/spends/all")
+        return [Spend.model_validate(item) for item in response.json()]
 
-    def update_category(self, body):
-        url = urljoin(self.base_url, "/api/categories/update")
-        response = self.session.patch(url, json=body)
+    @step("Отправить запрос на создание траты")
+    def add_spends(self, spend: SpendAdd) -> Spend:
+        spend_data = SpendAdd.model_validate(spend)
+        response = self.session.post("/api/spends/add", json=spend_data.model_dump())
+        return Spend.model_validate(response.json())
+
+    @step("Отправить запрос на редактирование траты")
+    def edit_spend(self, edit_spend: SpendEdit) -> Spend:
+        spend_data = SpendEdit.model_validate(edit_spend)
+        response = self.session.patch("/api/spends/edit", json=spend_data.model_dump())
+        return Spend.model_validate(response.json())
+
+    @step("Отправить запрос на удаление траты")
+    def remove_spends(self, ids: list[str]):
+        response = self.session.delete("/api/spends/remove", params={"ids": ids})
+        return response
+
+    @step("Отправить запрос на редактирование категории")
+    def update_category(self, category):
+        category_data = Category.model_validate(category)
+        response = self.session.patch("/api/categories/update", json=category_data.model_dump())
         response.raise_for_status()
-        return response.json()
+        return Category.model_validate(response.json())
