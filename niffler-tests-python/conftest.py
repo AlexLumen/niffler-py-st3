@@ -16,8 +16,8 @@ from database.spend_db import SpendDb
 from database.user_db import UserDb
 from fixtures.authorization import login_user, login_page
 from fixtures.person import person_generator, user_data
-from fixtures.spendings import (spends_client, price_value, category_value,
-                                description_value, currency, create_category, add_spending_page)
+from fixtures.spendings import (spends_client, currency, create_category, create_second_category, category_value,
+                                add_spending_page, spend_data_for_add, add_spend, spend_data_for_edit)
 from fixtures.profile import open_profile_page, profile_page
 from fixtures.alerts import archive_category_alert, logout_alert
 from fixtures.header_element import header_element
@@ -27,6 +27,7 @@ from fixtures.registration import registration_page
 from models.config import Envs
 from models.user_auth import UserAuth
 from teadowns.spending import delete_spending, archive_category
+from teadowns.categories import delete_category_with_spendings, delete_category_with_edited_spendings, delete_category
 import allure
 from allure_commons.reporter import AllureReporter
 from allure_commons.types import AttachmentType

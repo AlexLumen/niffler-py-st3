@@ -1,8 +1,10 @@
 import allure
 
 from allure_commons.types import AttachmentType
-from sqlalchemy import create_engine, Engine, event
+from sqlalchemy import create_engine, Engine, event, delete
 from sqlmodel import Session, select
+
+from models.spend import Spend, SpendDb
 from utils.allure_helpers import attach_sql
 from models.category import Category
 

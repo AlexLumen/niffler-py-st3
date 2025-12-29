@@ -2,13 +2,14 @@ from urllib.parse import urljoin
 
 import allure
 import requests
+from allure import step
 from requests import Response
 from allure_commons.types import AttachmentType
 from requests_toolbelt.utils.dump import dump_response
 
 from models.category import Category
 from models.config import Envs
-from models.spend import Spend, SpendAdd
+from models.spend import Spend, SpendAdd, SpendEdit
 from utils.sessions import BaseSession
 
 
@@ -25,29 +26,48 @@ class SpendsHttpClient:
             'Content-Type': 'application/json'
         })
 
+    @step("Отправить запрос на список категорий")
     def get_categories(self) -> list[Category]:
         response = self.session.get("/api/categories/all")
         return [Category.model_validate(item) for item in response.json()]
 
-    def add_category(self, name: str) -> Category:
+    @step("Отправить запрос на создание категории")
+    def add_category(self, name) -> Category:
         response = self.session.post("/api/categories/add", json={
             "name": name
         })
         return Category.model_validate(response.json())
 
+    @step("Отправить запрос на получение списка трат")
+    def get_spend(self, spend_id: int) -> Spend:
+        response = self.session.get(f"/api/spends/{spend_id}")
+        return Spend.model_validate(response.json())
+
+    @step("Отправить запрос на получение списка трат")
     def get_spends(self) -> list[Spend]:
         response = self.session.get("/api/spends/all")
         return [Spend.model_validate(item) for item in response.json()]
 
+    @step("Отправить запрос на создание траты")
     def add_spends(self, spend: SpendAdd) -> Spend:
-        response = self.session.post("/api/spends/add", json=spend.model_dump())
+        spend_data = SpendAdd.model_validate(spend)
+        response = self.session.post("/api/spends/add", json=spend_data.model_dump())
         return Spend.model_validate(response.json())
 
+    @step("Отправить запрос на редактирование траты")
+    def edit_spend(self, edit_spend: SpendEdit) -> Spend:
+        spend_data = SpendEdit.model_validate(edit_spend)
+        response = self.session.patch("/api/spends/edit", json=spend_data.model_dump())
+        return Spend.model_validate(response.json())
+
+    @step("Отправить запрос на удаление траты")
     def remove_spends(self, ids: list[str]):
         response = self.session.delete("/api/spends/remove", params={"ids": ids})
         return response
 
-    def update_category(self, body):
-        response = self.session.patch("/api/categories/update", json=body)
+    @step("Отправить запрос на редактирование категории")
+    def update_category(self, category):
+        category_data = Category.model_validate(category)
+        response = self.session.patch("/api/categories/update", json=category_data.model_dump())
         response.raise_for_status()
-        return response.json()
+        return Category.model_validate(response.json())
