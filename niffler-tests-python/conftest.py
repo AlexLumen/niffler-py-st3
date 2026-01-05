@@ -9,14 +9,15 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
 
+from clients.oauth_client import OAuthClient
 from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
 from database.spend_db import SpendDb
 from database.user_db import UserDb
 from fixtures.authorization import login_user, login_page
 from fixtures.person import person_generator, user_data
-from fixtures.spendings import (spends_client, price_value, category_value,
-                                description_value, currency, create_category, add_spending_page)
+from fixtures.spendings import (spends_client, currency, create_category, create_second_category, category_value,
+                                add_spending_page, spend_data_for_add, add_spend, spend_data_for_edit)
 from fixtures.profile import open_profile_page, profile_page
 from fixtures.alerts import archive_category_alert, logout_alert
 from fixtures.header_element import header_element
@@ -26,6 +27,7 @@ from fixtures.registration import registration_page
 from models.config import Envs
 from models.user_auth import UserAuth
 from teadowns.spending import delete_spending, archive_category
+from teadowns.categories import delete_category_with_spendings, delete_category_with_edited_spendings, delete_category
 import allure
 from allure_commons.reporter import AllureReporter
 from allure_commons.types import AttachmentType
@@ -34,16 +36,18 @@ from pytest import Item, FixtureDef, FixtureRequest
 
 
 @pytest.fixture(scope="session")
-def envs() -> Envs:
+def envs():
     load_dotenv()
-    return Envs(frontend_url=os.getenv("FRONT_URL"),
-                gateway_url=os.getenv("GATEWAY_URL"),
-                auth_url=os.getenv("AUTH_URL"),
-                spend_db_url=os.getenv("SPEND_DB_URL"),
-                username=os.getenv('USER_NAME'),
-                password=os.getenv('PASSWORD'),
-                auth_db_url=os.getenv("AUTH_DB_URL")
-                )
+    envs_instance = Envs(frontend_url=os.getenv("FRONT_URL"),
+                         gateway_url=os.getenv("GATEWAY_URL"),
+                         auth_url=os.getenv("AUTH_URL"),
+                         spend_db_url=os.getenv("SPEND_DB_URL"),
+                         username=os.getenv('USER_NAME'),
+                         password=os.getenv('PASSWORD'),
+                         auth_db_url=os.getenv("AUTH_DB_URL")
+                         )
+    allure.attach(envs_instance.model_dump_json(indent=2), name="envs.json", attachment_type=AttachmentType.JSON)
+    return envs_instance
 
 
 @pytest.fixture(scope="session")
@@ -145,13 +149,6 @@ def page(browser, envs):
     return page
 
 
-@pytest.fixture(scope="function")
-def get_access_token(page):
-    """
-    Получить access_token из localStorage.
-
-    Returns:
-        str or None: Значение access_token или None, если не найден
-    """
-    token = page.evaluate("window.localStorage.getItem('id_token')")
-    return token
+@pytest.fixture(scope="session")
+def auth_token(envs: Envs):
+    return OAuthClient(envs).get_token(envs.username, envs.password)
