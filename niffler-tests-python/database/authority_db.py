@@ -2,7 +2,7 @@ from allure_commons.types import AttachmentType
 from sqlalchemy import create_engine, Engine, event
 from sqlmodel import Session, select
 
-from models.authority import Authority
+from models.authority import Authority, User
 
 
 class AuthorityDb:
@@ -22,6 +22,15 @@ class AuthorityDb:
         with Session(self.engine) as session:
             authority = select(Authority).where(Authority.user_id == user_id)
             return session.exec(authority).all()
+
+    def get_user_by_user_name(self, username: str):
+        with Session(self.engine) as session:
+            statement = select(User).where(User.username == username)
+            try:
+                user = session.exec(statement).one()
+            except Exception:
+                user = None
+            return user
 
     def delete_authority(self, user_id: str):
         with Session(self.engine) as session:

@@ -1,7 +1,7 @@
 from allure_commons.types import AttachmentType
 from sqlalchemy import create_engine, Engine, event
 from sqlmodel import Session, select
-
+import allure
 from models.user import User
 
 
@@ -21,6 +21,7 @@ class UserDb:
     def get_user_by_username(self, username: str):
         with Session(self.engine) as session:
             user = select(User).where(User.username == username)
+            print("USER",user)
             return session.exec(user).first()
 
     def get_user(self):

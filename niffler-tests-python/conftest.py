@@ -9,6 +9,7 @@ import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
 
+from clients.kafka_client import KafkaClient
 from clients.oauth_client import OAuthClient
 from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
@@ -44,7 +45,9 @@ def envs():
                          spend_db_url=os.getenv("SPEND_DB_URL"),
                          username=os.getenv('USER_NAME'),
                          password=os.getenv('PASSWORD'),
-                         auth_db_url=os.getenv("AUTH_DB_URL")
+                         auth_db_url=os.getenv("AUTH_DB_URL"),
+                         userdata_db_url=os.getenv("USERDATA_DB_URL"),
+                         kafka_bootstrap_servers=os.getenv("KAFKA_BOOTSTRAP_SERVERS")
                          )
     allure.attach(envs_instance.model_dump_json(indent=2), name="envs.json", attachment_type=AttachmentType.JSON)
     return envs_instance
@@ -62,7 +65,7 @@ def category_db(envs) -> CategoriesDb:
 
 @pytest.fixture(scope="session")
 def user_db(envs) -> UserDb:
-    return UserDb(envs.auth_db_url)
+    return UserDb(envs.userdata_db_url)
 
 
 @pytest.fixture(scope="session")
@@ -152,3 +155,15 @@ def page(browser, envs):
 @pytest.fixture(scope="session")
 def auth_token(envs: Envs):
     return OAuthClient(envs).get_token(envs.username, envs.password)
+
+
+@pytest.fixture(scope="session")
+def auth_client(envs: Envs):
+    return OAuthClient(envs)
+
+
+@pytest.fixture(scope="session")
+def kafka(envs):
+    kafka_servers = envs.kafka_bootstrap_servers
+    with KafkaClient(kafka_bootstrap_servers=kafka_servers) as k:
+        yield k

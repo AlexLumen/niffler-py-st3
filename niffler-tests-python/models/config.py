@@ -9,4 +9,5 @@ class Envs(BaseModel):
     username: str
     password: str
     auth_url: str
-
+    kafka_bootstrap_servers: str
+    userdata_db_url: str
