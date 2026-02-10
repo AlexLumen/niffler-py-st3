@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.oorsprong.org/websamples.countryinfo" xmlns:w="http://www.oorsprong.org/websamples.countryinfo" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+    <xs:import namespace="http://www.w3.org/2003/05/soap-envelope" schemaLocation="envelope.xsd"/>
+    <xs:element name="CountryNameResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="w:CountryNameResult"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CountryNameResult" type="xs:NCName"/>
+</xs:schema>

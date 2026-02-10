@@ -25,6 +25,8 @@ from fixtures.header_element import header_element
 from fixtures.main_page import main_page
 from fixtures.navbar import navbar_element
 from fixtures.registration import registration_page
+from fixtures.soap_fixtures import (api_session, api_wookie_session,
+                                    api_destruction_session, api_module_session, soap_session)
 from models.config import Envs
 from models.user_auth import UserAuth
 from teadowns.spending import delete_spending, archive_category
