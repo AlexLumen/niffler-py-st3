@@ -19,17 +19,6 @@ from database.user_db import UserDb
 root_dir = os.path.dirname(__file__)
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
-    print(f"✅ Added {root_dir} to sys.path")
-else:
-    print(f"✅ {root_dir} already in sys.path")
-
-print(f"sys.path: {sys.path}")
-
-try:
-    import pages
-    print(f"✅ pages found at {pages.__file__}")
-except ImportError as e:
-    print(f"❌ pages not found: {e}")
 
 pytest_plugins = ["fixtures.authorization",
                   "fixtures.person",
