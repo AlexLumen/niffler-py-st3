@@ -25,7 +25,7 @@ pytest_plugins = ["fixtures.authorization",
                   "fixtures.navbar",
                   "fixtures.registration",
                   "fixtures.soap_fixtures",
-                  "teadowns.spending import",
+                  "teadowns.spending",
                   "teadowns.categories"]
 # from fixtures.authorization import login_user, login_page
 # from fixtures.person import person_generator, user_data
