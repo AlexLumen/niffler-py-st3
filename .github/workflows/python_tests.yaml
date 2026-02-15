@@ -63,8 +63,8 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-        run: |
-          echo "✅ Java  установлен
+          run: |
+            echo "✅ Java  установлен
 
       - name: Build containers
         run: |
