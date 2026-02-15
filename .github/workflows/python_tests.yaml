@@ -57,7 +57,7 @@ jobs:
         run: |
           poetry run playwright install chromium
           poetry run playwright install-deps
-          echo "✅ Playwright browsers  установлены
+          echo "✅ Playwright browsers  установлены"
 
 
       - name: Set up JDK 21
