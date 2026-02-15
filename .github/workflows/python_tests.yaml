@@ -43,7 +43,7 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install poetry==2.0.1
-          echo "✅ Poetry  установлен
+          echo "✅ Poetry  установлен"
 
       - name: Install Playwright browsers
         working-directory: ./niffler-tests-python
@@ -65,12 +65,12 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           run: |
-            echo "✅ Java  установлен
+            echo "✅ Java  установлен"
 
       - name: Build containers
         run: |
             bash docker-compose-dev.sh
-            echo "✅ Контейнеры  подняты
+            echo "✅ Контейнеры  подняты"
 
       - name: Add hosts to /etc/hosts
         run: |
