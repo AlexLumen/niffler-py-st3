@@ -1,0 +1,123 @@
+name: Run Python Tests for Niffler
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        working-directory: ./niffler-tests-python
+        run: |
+          cat > .env << EOF
+          USER_NAME="${{ secrets.USER_NAME }}"
+          PASSWORD="${{ secrets.PASSWORD }}"
+          FRONT_URL="http://frontend.niffler.dc"
+          AUTH_URL="http://auth.niffler.dc:9000"
+          GATEWAY_URL="http://gateway.niffler.dc:8090"
+          SPEND_DB_URL="postgresql+psycopg2://postgres:secret@localhost:5432/niffler-spend"
+          AUTH_DB_URL="postgresql+psycopg2://postgres:secret@localhost:5432/niffler-auth"
+          USERDATA_DB_URL="postgresql+psycopg2://postgres:secret@localhost:5432/niffler-userdata"
+          KAFKA_BOOTSTRAP_SERVERS="localhost:9093"
+          EOF
+          
+          echo "✅ .env файл создан:"
+          cat .env | grep -v PASSWORD | grep -v SECRET
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          run: |
+           echo "✅ Python  установлен
+
+      - name: Install poetry
+        run: |
+          pip install --upgrade pip
+          pip install poetry==2.0.1
+          echo "✅ Poetry  установлен
+
+      - name: Install Playwright browsers
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry run playwright install chromium
+          poetry run playwright install-deps
+          echo "✅ Playwright browsers  установлены
+
+      - name: Install dependencies with Poetry
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project true
+          poetry install --no-interaction --no-ansi --no-root
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+        run: |
+          echo "✅ Java  установлен
+
+      - name: Build containers
+        run: |
+            bash docker-compose-dev.sh
+            echo "✅ Контейнеры  подняты
+
+      - name: Add hosts to /etc/hosts
+        run: |
+          echo "127.0.0.1 frontend.niffler.dc" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 auth.niffler.dc" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 gateway.niffler.dc" | sudo tee -a /etc/hosts
+          echo "✅ Хосты добавлены:"
+          cat /etc/hosts | grep niffler
+
+      - name: Run tests with pytest
+        working-directory: ./niffler-tests-python
+        run: |
+          echo "🧪 Запуск тестов Python..."
+          poetry run pytest -v
+        continue-on-error: false
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results
+          path: niffler-tests-python/allure-results/
+          retention-days: 30
+      
+  allure-report:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all Allure results
+        uses: actions/download-artifact@v4
+        with:
+          path: allure-results
+          pattern: allure-results-*
+          merge-multiple: true
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.9
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy Allure report to GitHub Pages
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          destination_dir: ${{ github.run_number }}
