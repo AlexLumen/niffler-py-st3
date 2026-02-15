@@ -82,21 +82,12 @@ jobs:
           echo "✅ Хосты добавлены:"
           cat /etc/hosts | grep niffler
 
-      - name: Create pytest.ini with Pythonpath
-        working-directory: ./niffler-tests-python
-        run: |
-          cat > pytest.ini << EOF
-          [pytest]
-          pythonpath = . ..
-          testpaths = tests
-          EOF
-          echo "✅ pytest.ini создан"
 
       - name: Run tests with pytest
         working-directory: ./niffler-tests-python
         run: |
           echo "🧪 Запуск тестов Python..."
-          poetry run pytest -v
+          poetry run pytest --alluredir=allure-results
         continue-on-error: false
 
       - name: Upload Allure results

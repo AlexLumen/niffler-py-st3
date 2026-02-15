@@ -15,22 +15,34 @@ from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
 from database.spend_db import SpendDb
 from database.user_db import UserDb
-from fixtures.authorization import login_user, login_page
-from fixtures.person import person_generator, user_data
-from fixtures.spendings import (spends_client, currency, create_category, create_second_category, category_value,
-                                add_spending_page, spend_data_for_add, add_spend, spend_data_for_edit)
-from fixtures.profile import open_profile_page, profile_page
-from fixtures.alerts import archive_category_alert, logout_alert
-from fixtures.header_element import header_element
-from fixtures.main_page import main_page
-from fixtures.navbar import navbar_element
-from fixtures.registration import registration_page
-from fixtures.soap_fixtures import (api_session, api_wookie_session,
-                                    api_destruction_session, api_module_session, soap_session)
+pytest_plugins = ["fixtures.authorization",
+                  "fixtures.person",
+                  "fixtures.spendings",
+                  "fixtures.profile",
+                  "fixtures.alerts",
+                  "fixtures.header_element",
+                  "fixtures.main_page",
+                  "fixtures.navbar",
+                  "fixtures.registration",
+                  "fixtures.soap_fixtures",
+                  "teadowns.spending import",
+                  "teadowns.categories"]
+# from fixtures.authorization import login_user, login_page
+# from fixtures.person import person_generator, user_data
+# from fixtures.spendings import (spends_client, currency, create_category, create_second_category, category_value,
+#                                 add_spending_page, spend_data_for_add, add_spend, spend_data_for_edit)
+# from fixtures.profile import open_profile_page, profile_page
+# from fixtures.alerts import archive_category_alert, logout_alert
+# from fixtures.header_element import header_element
+# from fixtures.main_page import main_page
+# from fixtures.navbar import navbar_element
+# from fixtures.registration import registration_page
+# from fixtures.soap_fixtures import (api_session, api_wookie_session,
+#                                     api_destruction_session, api_module_session, soap_session)
 from models.config import Envs
 from models.user_auth import UserAuth
-from teadowns.spending import delete_spending, archive_category
-from teadowns.categories import delete_category_with_spendings, delete_category_with_edited_spendings, delete_category
+# from teadowns.spending import delete_spending, archive_category
+# from teadowns.categories import delete_category_with_spendings, delete_category_with_edited_spendings, delete_category
 import allure
 from allure_commons.reporter import AllureReporter
 from allure_commons.types import AttachmentType
