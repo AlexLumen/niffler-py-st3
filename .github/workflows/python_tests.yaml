@@ -44,11 +44,12 @@ jobs:
           pip install --upgrade pip
           pip install poetry==2.0.1
           echo "✅ Poetry  установлен"
-      - name: Install project in editable mode
+
+      - name: Set PYTHONPATH for tests
         working-directory: ./niffler-tests-python
         run: |
-          poetry run pip install -e .
-          echo "✅ Проект установлен в режиме editable"
+            echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
+            echo "✅ PYTHONPATH установлен: $(pwd)"
 
       - name: Install dependencies with Poetry
         working-directory: ./niffler-tests-python
