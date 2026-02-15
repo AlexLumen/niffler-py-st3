@@ -3,6 +3,7 @@ name: Run Python Tests for Niffler
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 jobs:
   test:
