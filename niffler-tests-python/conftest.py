@@ -4,7 +4,7 @@
     Конфиг для тестов
 """
 import os
-
+import sys
 import pytest
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Browser
@@ -15,6 +15,10 @@ from database.authority_db import AuthorityDb
 from database.category_db import CategoriesDb
 from database.spend_db import SpendDb
 from database.user_db import UserDb
+
+root_dir = os.path.dirname(__file__)
+if root_dir not in sys.path:
+  sys.path.insert(0, root_dir)
 pytest_plugins = ["fixtures.authorization",
                   "fixtures.person",
                   "fixtures.spendings",
