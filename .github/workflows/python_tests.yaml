@@ -44,6 +44,11 @@ jobs:
           pip install --upgrade pip
           pip install poetry==2.0.1
           echo "✅ Poetry  установлен"
+      - name: Install project in editable mode
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry run pip install -e .
+          echo "✅ Проект установлен в режиме editable"
 
       - name: Install dependencies with Poetry
         working-directory: ./niffler-tests-python
