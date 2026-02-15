@@ -45,6 +45,13 @@ jobs:
           pip install poetry==2.0.1
           echo "✅ Poetry  установлен"
 
+      - name: Install dependencies with Poetry
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project true
+          poetry install --no-interaction --no-ansi --no-root
+
       - name: Install Playwright browsers
         working-directory: ./niffler-tests-python
         run: |
@@ -52,12 +59,6 @@ jobs:
           poetry run playwright install-deps
           echo "✅ Playwright browsers  установлены
 
-      - name: Install dependencies with Poetry
-        working-directory: ./niffler-tests-python
-        run: |
-          poetry config virtualenvs.create true
-          poetry config virtualenvs.in-project true
-          poetry install --no-interaction --no-ansi --no-root
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
