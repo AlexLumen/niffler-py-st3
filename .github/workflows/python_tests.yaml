@@ -38,6 +38,9 @@ jobs:
           python-version: '3.10'
           run: |
            echo "✅ Python  установлен
+      - name: Set PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$(pwd):$PYTHONPATH" >> $GITHUB_ENV
 
       - name: Install poetry
         run: |
