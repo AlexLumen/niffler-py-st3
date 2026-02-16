@@ -26,7 +26,6 @@ class MainPage:
                                                         '-child(4)',
                                                 name="description sell")
 
-
     def check_spendings_block_visibility(self):
         """
          проверить отображение блока History of Spendings

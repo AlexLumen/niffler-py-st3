@@ -1,5 +1,4 @@
 
-
 import os
 from page_factory.button import Button
 from page_factory.paragraph import Paragraph
