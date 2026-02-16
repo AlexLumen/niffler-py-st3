@@ -1,19 +1,16 @@
 
-
 from page_factory.button import Button
 from page_factory.input import Input
 from page_factory.paragraph import Paragraph
 from page_factory.tag import Tag
 
 
-
 class ProfilePage:
     def __init__(self, page):
-
         self.add_category_input = Input(page, locator="[id='category']", name="Add category")
         self.category_tag = Tag(page, locator="[class*='css-14vsv3w']", name="Category tag")
         self.category_input_error_message = Paragraph(page, locator="Allowed category length is from "
-                                                                                     "2 to 50 symbols",
+                                                                    "2 to 50 symbols",
                                                       name="Invalid lenght message", strategy="text")
         self.edit_category_button = Button(page, locator="[aria-label='Edit category']", name="Edit category")
         self.edit_category_input = Input(page, locator="Edit category", name="Edit category", strategy="placeholder")
