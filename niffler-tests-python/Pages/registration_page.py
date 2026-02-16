@@ -1,5 +1,4 @@
 
-
 from page_factory.button import Button
 from page_factory.form import Form
 from page_factory.input import Input

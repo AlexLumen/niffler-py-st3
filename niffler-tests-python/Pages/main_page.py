@@ -13,12 +13,19 @@ class MainPage:
                                              name="History of Spendings title", strategy='text')
         self.no_spending_text = Paragraph(page, locator="There are no spendings",
                                           name="no spending text", strategy="text")
-        self.category_name_sell = TableSell(page, locator=".MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth-child(2)",
+        self.category_name_sell = TableSell(page,
+                                            locator=".MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth"
+                                                    "-child(2)",
                                             name="category name sell")
-        self.amount_value_sell = TableSell(page, locator='.MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth-child(3)',
+        self.amount_value_sell = TableSell(page,
+                                           locator='.MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth'
+                                                   '-child(3)',
                                            name="amount sell")
-        self.description_value_sell = TableSell(page, locator='.MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth-child(4)',
+        self.description_value_sell = TableSell(page,
+                                                locator='.MuiTableBody-root>.MuiTableRow-root>.MuiTableCell-root:nth'
+                                                        '-child(4)',
                                                 name="description sell")
+
 
     def check_spendings_block_visibility(self):
         """
