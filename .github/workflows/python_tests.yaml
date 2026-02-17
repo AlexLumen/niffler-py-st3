@@ -80,9 +80,9 @@ jobs:
       - name: Add hosts with correct IPs
         run: |
             # Получаем IP контейнеров
-            AUTH_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' niffler-auth)
-            GATEWAY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' niffler-gateway)
-            FRONTEND_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' niffler-frontend)
+            AUTH_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' auth.niffler.dc)
+            GATEWAY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gateway.niffler.dc)
+            FRONTEND_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' frontend.niffler.dc)
             
             echo "Auth IP: $AUTH_IP"
             echo "Gateway IP: $GATEWAY_IP" 
