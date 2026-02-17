@@ -127,7 +127,7 @@ def pytest_runtest_teardown(item):
 @pytest.fixture(scope="function")
 def browser(request):
     playwright = sync_playwright().start()
-    browser = playwright.chromium.launch(headless=False, args=["--start-fullscreen"])
+    browser = playwright.chromium.launch(headless=True, args=["--start-fullscreen"])
 
     def teardown():
         browser.close()
