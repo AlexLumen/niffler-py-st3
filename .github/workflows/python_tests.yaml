@@ -83,7 +83,7 @@ jobs:
         working-directory: ./niffler-tests-python
         run: |
           echo "🧪 Запуск тестов Python..."
-          poetry run pytest --alluredir=allure-results
+          poetry run pytest -v --tb=long --capture=no
         continue-on-error: false
 
       - name: Upload Allure results

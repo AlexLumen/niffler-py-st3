@@ -155,6 +155,8 @@ def page(browser, envs):
 
 @pytest.fixture(scope="session")
 def auth_token(envs: Envs):
+    print(envs.username)
+    print(envs.password)
     return OAuthClient(envs).get_token(envs.username, envs.password)
 
 
