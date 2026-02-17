@@ -100,41 +100,85 @@ jobs:
           echo "🧪 Запуск тестов Python..."
           poetry run pytest -v --tb=long --capture=no
         continue-on-error: false
-
-      - name: Upload Allure results
+      - name: Upload Logs as artifact
         uses: actions/upload-artifact@v4
+        with:
+          name: pytest-logs
+          path: niffler-e-2-e-tests-python/logs
+
+      - name: Load test report history
+        uses: actions/checkout@v3
         if: always()
+        continue-on-error: true
         with:
-          name: allure-results
-          path: niffler-tests-python/allure-results/
-          retention-days: 30
-      
-  allure-report:
-    needs: test
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download all Allure results
-        uses: actions/download-artifact@v4
-        with:
-          path: niffler-tests-python/allure-results
-          pattern: allure-results-*
-          merge-multiple: true
+          ref: gh-pages
+          path: gh-pages
+#          path: niffler-e-2-e-tests-python/allure-history
 
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.12
+        if: always()
+        uses: simple-elf/allure-report-action@master
         with:
-          allure_results: niffler-tests-python/allure-results
+          allure_results: niffler-e-2-e-tests-python/allure-results
           allure_history: gh-pages/history
+#          allure_history: niffler-e-2-e-tests-python/allure-history
           allure_report: niffler-e-2-e-tests-python/allure-report
           gh_pages: gh-pages
+#          subfolder: ${{ github.run_number }}
           keep_reports: 20
 
-      - name: Deploy Allure report to GitHub Pages
+      - name: Upload Allure Report as artifact
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: niffler-e-2-e-tests-python/allure-report
+
+      - name: Deploy Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-history
-          destination_dir: ${{ github.run_number }}
+          publish_dir: gh-pages/history
+#          publish_dir: niffler-e-2-e-tests-python/allure-report
+#          publish_dir: niffler-e-2-e-tests-python/allure-history
+          keep_files: true
+
+#      - name: Upload Allure results
+#        uses: actions/upload-artifact@v4
+#        if: always()
+#        with:
+#          name: allure-results
+#          path: niffler-tests-python/allure-results/
+#          retention-days: 30
+#
+#  allure-report:
+#    needs: test
+#    if: always()
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Download all Allure results
+#        uses: actions/download-artifact@v4
+#        with:
+#          path: allure-results
+#          pattern: allure-results-*
+#          merge-multiple: true
+#
+#      - name: Generate Allure Report
+#        uses: simple-elf/allure-report-action@v1.12
+#        with:
+#          allure_results: niffler-tests-python/allure-results
+#          allure_history: gh-pages/history
+#          allure_report: niffler-e-2-e-tests-python/allure-report
+#          gh_pages: gh-pages
+#          keep_reports: 20
+#
+#      - name: Deploy Allure report to GitHub Pages
+#        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_branch: gh-pages
+#          publish_dir: allure-history
+#          destination_dir: ${{ github.run_number }}
