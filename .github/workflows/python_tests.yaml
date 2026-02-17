@@ -36,8 +36,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          run: |
-           echo "✅ Python  установлен
+
       - name: Set PYTHONPATH
         run: |
           echo "PYTHONPATH=$(pwd):$PYTHONPATH" >> $GITHUB_ENV
@@ -46,7 +45,6 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install poetry==2.0.1
-          echo "✅ Poetry  установлен"
 
 
       - name: Install dependencies with Poetry
@@ -61,7 +59,6 @@ jobs:
         run: |
           poetry run playwright install chromium
           poetry run playwright install-deps
-          echo "✅ Playwright browsers  установлены"
 
 
       - name: Set up JDK 21
@@ -69,20 +66,16 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          run: |
-            echo "✅ Java  установлен"
 
       - name: Build containers
         run: |
             bash docker-compose-dev.sh
-            echo "✅ Контейнеры  подняты"
 
       - name: Add hosts to /etc/hosts
         run: |
           echo "127.0.0.1 frontend.niffler.dc" | sudo tee -a /etc/hosts
           echo "127.0.0.1 auth.niffler.dc" | sudo tee -a /etc/hosts
           echo "127.0.0.1 gateway.niffler.dc" | sudo tee -a /etc/hosts
-          echo "✅ Хосты добавлены:"
           cat /etc/hosts | grep niffler
 
 
