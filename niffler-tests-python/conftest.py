@@ -155,14 +155,19 @@ def page(browser, envs):
 
 @pytest.fixture(scope="session")
 def auth_token(envs: Envs):
-    print(envs.username)
-    print(envs.password)
     return OAuthClient(envs).get_token(envs.username, envs.password)
 
 
 @pytest.fixture(scope="session")
 def auth_client(envs: Envs):
     return OAuthClient(envs)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def registration_user(envs: Envs, authority_db, auth_client):
+    user = authority_db.get_user_by_user_name(envs.username)
+    if not user:
+        auth_client.register(envs.username, envs.password)
 
 
 @pytest.fixture(scope="session")
