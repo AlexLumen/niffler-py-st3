@@ -1,0 +1,14 @@
+{
+    "id": "b7283425-6dc7-470c-9416-c54b9718e29e",
+    "spendDate": "2026-02-17T19:26:48.578+00:00",
+    "category": {
+        "id": "4a93a2c3-f843-430f-b0ec-deba3a89811f",
+        "name": "certificate",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 1367.29,
+    "description": "Type classes first appeared in the Haske",
+    "username": "Alex"
+}

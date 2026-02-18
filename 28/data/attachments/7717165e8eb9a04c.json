@@ -1,0 +1,14 @@
+{
+    "id": "6e9e9500-a711-4fb5-9973-209efc71fb13",
+    "spendDate": "2026-02-17T19:26:47.951+00:00",
+    "category": {
+        "id": "9c532f6d-b82b-465c-9a25-2b4d5418eac5",
+        "name": "exp",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 685.79,
+    "description": "Ports are used to communicate with the e",
+    "username": "Alex"
+}

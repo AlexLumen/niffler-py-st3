@@ -1,0 +1,14 @@
+{
+    "id": "6e9e9500-a711-4fb5-9973-209efc71fb13",
+    "spendDate": "2026-02-17T19:26:47.951+00:00",
+    "category": {
+        "id": "7e76437a-50c0-42ee-aedb-bf1c900e9ec8",
+        "name": "non",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 750.66,
+    "description": "Do you have any idea why this is not wor",
+    "username": "Alex"
+}
