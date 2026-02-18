@@ -1,0 +1,16 @@
+[
+    {
+        "id": "d503825e-657a-4aec-bdbf-a5fcf4c64ebe",
+        "spendDate": "2026-02-16T21:00:00.000+00:00",
+        "category": {
+            "id": "bcf35928-0864-4771-ab04-36348f66630d",
+            "name": "consult",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 819.05,
+        "description": "Its main implementation is the Glasgow H",
+        "username": "Alex"
+    }
+]
