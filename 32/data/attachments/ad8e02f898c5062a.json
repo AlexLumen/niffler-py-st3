@@ -1,0 +1,14 @@
+{
+    "id": "adc28147-7a72-49d3-8223-8fb070f98e66",
+    "spendDate": "2026-02-18T19:16:18.416+00:00",
+    "category": {
+        "id": "2850360a-7afd-4ed9-bdf5-d88328bb5e31",
+        "name": "australia",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 874.32,
+    "description": "Messages can be sent to and received fro",
+    "username": "Alex"
+}

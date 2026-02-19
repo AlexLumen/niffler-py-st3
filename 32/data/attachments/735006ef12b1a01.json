@@ -1,0 +1,14 @@
+{
+    "id": "80b409d7-15e7-4859-a4e4-01a16a1bde7c",
+    "spendDate": "2026-02-18T19:16:17.952+00:00",
+    "category": {
+        "id": "0ca241ef-5479-4194-840a-6cc52d4f72af",
+        "name": "mysql",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 1048.23,
+    "description": "",
+    "username": "Alex"
+}

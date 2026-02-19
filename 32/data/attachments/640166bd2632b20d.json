@@ -1,0 +1,14 @@
+{
+    "id": "65b1498f-d9aa-4ef4-8b0c-02c50d6661b1",
+    "spendDate": "2026-02-18T19:16:17.282+00:00",
+    "category": {
+        "id": "e992d6f4-3cb3-4731-af4e-aa04bfe536ca",
+        "name": "detail",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 811.0,
+    "description": "Where are my pants?",
+    "username": "Alex"
+}

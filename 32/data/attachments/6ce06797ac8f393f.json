@@ -1,0 +1,16 @@
+[
+    {
+        "id": "4a9dcf93-8980-4cd2-8b84-79b43f6c6d08",
+        "spendDate": "2026-02-17T21:00:00.000+00:00",
+        "category": {
+            "id": "5649bac4-1e21-4b1a-9b44-e2beaffffc91",
+            "name": "visits",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "EUR",
+        "amount": 706.74,
+        "description": "Where are my pants?",
+        "username": "Alex"
+    }
+]

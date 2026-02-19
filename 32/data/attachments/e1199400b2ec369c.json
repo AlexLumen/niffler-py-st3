@@ -1,0 +1,16 @@
+[
+    {
+        "id": "544b866e-164e-4351-9ff4-4528c3b75619",
+        "spendDate": "2026-02-17T21:00:00.000+00:00",
+        "category": {
+            "id": "88ce2f40-ddea-4333-bdad-40f7299b2c3e",
+            "name": "polish",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 1247.41,
+        "description": "Do you come here often?",
+        "username": "Alex"
+    }
+]

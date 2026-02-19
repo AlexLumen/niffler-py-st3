@@ -1,0 +1,16 @@
+[
+    {
+        "id": "19b3dffa-eeaf-4a98-b728-100fa8e622be",
+        "spendDate": "2026-02-17T21:00:00.000+00:00",
+        "category": {
+            "id": "cfcd28e0-120c-422b-b200-2950fb8012a8",
+            "name": "always",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 1185.05,
+        "description": "The sequential subset of Erlang supports",
+        "username": "Alex"
+    }
+]

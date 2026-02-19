@@ -1,0 +1,1 @@
+DELETE FROM category WHERE category.id = fee15457-425d-44e6-b760-f6c9938b2f75
