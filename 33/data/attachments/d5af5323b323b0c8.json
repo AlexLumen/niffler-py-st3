@@ -1,0 +1,14 @@
+{
+    "id": "0813ff91-5788-48ee-a6f6-1cb6d7626995",
+    "spendDate": "2026-02-18T19:42:29.827+00:00",
+    "category": {
+        "id": "06d56f43-1bef-43bb-8381-c4b75657615c",
+        "name": "ladies",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 1288.0,
+    "description": "The syntax {D1,D2,...,Dn} denotes a tupl",
+    "username": "Alex"
+}

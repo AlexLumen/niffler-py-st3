@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+    <script src="https://yastatic.net/jquery/2.2.3/jquery.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://yastatic.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://yastatic.net/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="https://yandex.st/highlightjs/8.0/styles/github.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/bash.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/json.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/xml.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre><code>POST to http://gateway.niffler.dc:8090/api/spends/add</code></pre>
+</div>
+
+
+    <h4>Body</h4>
+    <div>
+        <pre><code>b'{"amount": 1420.64, "description": "Ports are used to communicate with the e", "category": {"name": "greg", "username": null, "archived": null}, "spendDate": "2026-02-18T19:42:29.655314", "currency": "USD"}'</code></pre>
+    </div>
+
+
+
+
+    <h4>Headers</h4>
+    <div>
+    
+        <div>
+            <pre><code><b>User-Agent</b>: python-requests/2.32.5</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept-Encoding</b>: gzip, deflate</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Connection</b>: keep-alive</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Authorization</b>: Bearer eyJraWQiOiI1Nzk0OGM3Yi04MjE5LTQ2YmItOWM4OC02ZTc1YzgxNDM3NWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNTMwMTQzLCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNTMzNzQzLCJpYXQiOjE3NzE1MzAxNDMsImp0aSI6ImI3MjZlN2NhLTk0YWYtNGJkZS1hZGE0LTk3Y2I3ZjhmNWI4ZSJ9.tjeLy5c1scWdCUAvqDeb09hjZIgJ-mqsVlWGEOyc3ov3WDfVIVcXFMU1BT3F0RecWlASr0Sc41FK0YGQ-gLo8t6ocRxoGG-wH9YjtYGLerI83ybCsSE_7fyEAK4b5pu6ZYGBrbglExXuo-jMUDASbLTS-NKYfOo1rafwl9WgnPqNuCsqKFVLfxC3eGx818S6MCwX90WuYZTLVOLihzr8eO9Nh1L0x2kxxeWv0p2pLq27rPWKpYD2HtoY4UWMKip2n2mvc1juPY2IqeLia0e6UxjieGw8KhljKVZkZEGGtz5J95zzB08zqRqp-pXZYuXT57eNIKarQXOvKFZ52tJuLg</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Type</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Length</b>: 206</code></pre>
+        </div>
+    
+    </div>
+
+
+
+
+
+
+    <h4>Curl</h4>
+    <div>
+        <pre><code>curl -X POST -H 'Accept: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Authorization: Bearer eyJraWQiOiI1Nzk0OGM3Yi04MjE5LTQ2YmItOWM4OC02ZTc1YzgxNDM3NWIiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNTMwMTQzLCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNTMzNzQzLCJpYXQiOjE3NzE1MzAxNDMsImp0aSI6ImI3MjZlN2NhLTk0YWYtNGJkZS1hZGE0LTk3Y2I3ZjhmNWI4ZSJ9.tjeLy5c1scWdCUAvqDeb09hjZIgJ-mqsVlWGEOyc3ov3WDfVIVcXFMU1BT3F0RecWlASr0Sc41FK0YGQ-gLo8t6ocRxoGG-wH9YjtYGLerI83ybCsSE_7fyEAK4b5pu6ZYGBrbglExXuo-jMUDASbLTS-NKYfOo1rafwl9WgnPqNuCsqKFVLfxC3eGx818S6MCwX90WuYZTLVOLihzr8eO9Nh1L0x2kxxeWv0p2pLq27rPWKpYD2HtoY4UWMKip2n2mvc1juPY2IqeLia0e6UxjieGw8KhljKVZkZEGGtz5J95zzB08zqRqp-pXZYuXT57eNIKarQXOvKFZ52tJuLg' -H 'Connection: keep-alive' -H 'Content-Length: 206' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.32.5' -d '{"amount": 1420.64, "description": "Ports are used to communicate with the e", "category": {"name": "greg", "username": null, "archived": null}, "spendDate": "2026-02-18T19:42:29.655314", "currency": "USD"}' http://gateway.niffler.dc:8090/api/spends/add</code></pre>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "id": "11bddf95-e9fc-4791-aac4-ba0c9f37a1cb",
+    "spendDate": "2026-02-18T19:42:29.345+00:00",
+    "category": {
+        "id": "69ac1979-1a4a-4683-b55d-6ffd28d86b84",
+        "name": "holdem",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 737.0,
+    "description": "Where are my pants?",
+    "username": "Alex"
+}

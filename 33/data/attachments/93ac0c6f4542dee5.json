@@ -1,0 +1,14 @@
+{
+    "id": "11bddf95-e9fc-4791-aac4-ba0c9f37a1cb",
+    "spendDate": "2026-02-18T19:42:29.346+00:00",
+    "category": {
+        "id": "08ba9db5-dba2-4845-bef6-3fe260d991d0",
+        "name": "opt",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 962.41,
+    "description": "He looked inquisitively at his keyboard ",
+    "username": "Alex"
+}

@@ -1,0 +1,14 @@
+{
+    "id": "df429d90-74bf-4f5c-88c3-550a955bb367",
+    "spendDate": "2026-02-18T19:42:27.452+00:00",
+    "category": {
+        "id": "e1f7a3e3-9ae2-4793-b9e8-6da65b05a249",
+        "name": "transmission",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1494.58,
+    "description": "Erlang is known for its designs that are",
+    "username": "Alex"
+}

@@ -1,0 +1,16 @@
+[
+    {
+        "id": "166be6d6-f03c-4cf7-8e1f-ef3425bd2400",
+        "spendDate": "2026-02-17T21:00:00.000+00:00",
+        "category": {
+            "id": "29a9df34-2312-4e19-ad2c-84429b9c293c",
+            "name": "divided",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 1448.65,
+        "description": "",
+        "username": "Alex"
+    }
+]
