@@ -166,7 +166,7 @@ def auth_client(envs: Envs):
 @pytest.fixture(scope="session", autouse=True)
 def registration_user(envs: Envs, authority_db, auth_client):
     user = authority_db.get_user_by_user_name(envs.username)
-    if not user:
+    if user != None:
         auth_client.register(envs.username, envs.password)
 
 

@@ -44,4 +44,4 @@ class LoginPage(BasePage):
         self.new_account_button.click()
 
     def check_invalid_creds_error_message(self):
-        self.error_message.should_have_text("Неверные учетные данные пользователя")
+        self.error_message.should_have_text("Bad credentials")
