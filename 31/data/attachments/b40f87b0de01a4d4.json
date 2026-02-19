@@ -1,0 +1,16 @@
+[
+    {
+        "id": "f89a68d4-02e9-4d35-9d48-743b335dff7c",
+        "spendDate": "2026-02-17T21:00:00.000+00:00",
+        "category": {
+            "id": "12e11a90-3665-456c-9e29-531ffd88856d",
+            "name": "banks",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 855.33,
+        "description": "",
+        "username": "Alex"
+    }
+]

@@ -1,0 +1,14 @@
+{
+    "id": "2a6d6ca9-f1a7-42e3-b3ac-2f6762ec31d0",
+    "spendDate": "2026-02-18T18:38:58.159+00:00",
+    "category": {
+        "id": "64adfc3c-9bb3-463b-8ce9-8f6d85ec9bd7",
+        "name": "dance",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1156.04,
+    "description": "Messages can be sent to and received fro",
+    "username": "Alex"
+}

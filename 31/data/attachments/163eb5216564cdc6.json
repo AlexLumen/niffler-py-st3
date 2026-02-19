@@ -1,0 +1,14 @@
+{
+    "id": "1b4a601f-6ffd-44ef-a42f-61a4f50c5732",
+    "spendDate": "2026-02-18T18:38:58.426+00:00",
+    "category": {
+        "id": "1131cfea-9ea0-4a4b-bb29-27089f1fcf43",
+        "name": "outside",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 913.99,
+    "description": "In 1989 the building was heavily damaged",
+    "username": "Alex"
+}

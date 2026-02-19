@@ -1,0 +1,14 @@
+{
+    "id": "1b4a601f-6ffd-44ef-a42f-61a4f50c5732",
+    "spendDate": "2026-02-18T18:38:58.426+00:00",
+    "category": {
+        "id": "cc954f35-f264-4d26-b5c9-5f15fe2b6e8e",
+        "name": "faster",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1066.74,
+    "description": "Any element of a tuple can be accessed i",
+    "username": "Alex"
+}

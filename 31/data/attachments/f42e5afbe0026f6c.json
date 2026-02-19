@@ -1,0 +1,14 @@
+{
+    "id": "a57cf58a-e554-432d-abc1-58bb958da5fe",
+    "spendDate": "2026-02-18T18:38:58.001+00:00",
+    "category": {
+        "id": "e7575fda-862e-4828-898a-a49ccd017b9d",
+        "name": "sustainable",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 1262.23,
+    "description": "The arguments can be primitive data type",
+    "username": "Alex"
+}
