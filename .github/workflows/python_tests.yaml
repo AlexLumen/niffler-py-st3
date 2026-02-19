@@ -77,21 +77,23 @@ jobs:
 #          echo "127.0.0.1 auth.niffler.dc" | sudo tee -a /etc/hosts
 #          echo "127.0.0.1 gateway.niffler.dc" | sudo tee -a /etc/hosts
 #          cat /etc/hosts | grep niffler
-      - name: Add hosts with correct IPs
+      - name: Add hosts with IPs
         run: |
-            # Получаем IP контейнеров
-            AUTH_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' auth.niffler.dc)
-            GATEWAY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gateway.niffler.dc)
-            FRONTEND_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' frontend.niffler.dc)
-            
-            echo "Auth IP: $AUTH_IP"
-            echo "Gateway IP: $GATEWAY_IP" 
-            echo "Frontend IP: $FRONTEND_IP"
-            
-            # Добавляем в hosts
-            echo "$AUTH_IP auth.niffler.dc" | sudo tee -a /etc/hosts
-            echo "$GATEWAY_IP gateway.niffler.dc" | sudo tee -a /etc/hosts
-            echo "$FRONTEND_IP frontend.niffler.dc" | sudo tee -a /etc/hosts
+          echo -e "127.0.0.1\tlocalhost\n127.0.0.1\tfrontend.niffler.dc\n127.0.0.1\tauth.niffler.dc\n127.0.0.1\tgateway.niffler.dc\n127.0.0.1\tuserdata.niffler.dc\n127.0.0.1\tkafka" | sudo tee -a /etc/hosts
+#        run: |
+#            # Получаем IP контейнеров
+#            AUTH_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' auth.niffler.dc)
+#            GATEWAY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gateway.niffler.dc)
+#            FRONTEND_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' frontend.niffler.dc)
+#
+#            echo "Auth IP: $AUTH_IP"
+#            echo "Gateway IP: $GATEWAY_IP"
+#            echo "Frontend IP: $FRONTEND_IP"
+#
+#            # Добавляем в hosts
+#            echo "$AUTH_IP auth.niffler.dc" | sudo tee -a /etc/hosts
+#            echo "$GATEWAY_IP gateway.niffler.dc" | sudo tee -a /etc/hosts
+#            echo "$FRONTEND_IP frontend.niffler.dc" | sudo tee -a /etc/hosts
 
 
       - name: Run tests with pytest
