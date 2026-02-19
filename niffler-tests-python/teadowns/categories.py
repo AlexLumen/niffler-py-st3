@@ -43,6 +43,7 @@ def delete_category_with_edited_spendings(request, envs, category_db, spends_cli
 def delete_category(request, envs, category_db, category_value):
     def teardown():
         category_in_db = category_db.get_category_by_name(envs.username, category_value)
-        category_db.delete_category(category_in_db.id)
+        if category_in_db is not None:
+            category_db.delete_category(category_in_db.id)
 
     request.addfinalizer(teardown)
