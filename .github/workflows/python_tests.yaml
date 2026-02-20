@@ -75,7 +75,24 @@ jobs:
         run: |
           echo -e "127.0.0.1\tlocalhost\n127.0.0.1\tfrontend.niffler.dc\n127.0.0.1\tauth.niffler.dc\n127.0.0.1\tgateway.niffler.dc\n127.0.0.1\tuserdata.niffler.dc\n127.0.0.1\tkafka" | sudo tee -a /etc/hosts
 
+      - name: Install poetry
+        run: |
+          pip install --upgrade pip
+          pip install poetry==2.0.1
 
+
+      - name: Install dependencies with Poetry
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project true
+          poetry install --no-interaction --no-ansi --no-root
+
+      - name: Install Playwright browsers
+        working-directory: ./niffler-tests-python
+        run: |
+          poetry run playwright install chromium
+          poetry run playwright install-deps
       - name: Run tests with pytest
         working-directory: ./niffler-tests-python
         run: |
