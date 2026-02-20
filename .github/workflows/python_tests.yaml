@@ -104,30 +104,30 @@ jobs:
             return 1
           }
           
-          # Ждем все важные контейнеры
-          wait_for_healthy "niffler-all-db"
-          wait_for_healthy "auth.niffler.dc"
-          wait_for_healthy "gateway.niffler.dc"
-          wait_for_healthy "userdata.niffler.dc"
-          wait_for_healthy "spend.niffler.dc"
-          wait_for_healthy "currency.niffler.dc"
-          wait_for_healthy "frontend.niffler.dc"
-          
-          echo "✅ Все сервисы здоровы!"
-          
-          # Дополнительно проверяем через curl
-          echo "🔍 Проверка через curl:"
-          for i in {1..30}; do
-            if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
-              echo "  Gateway отвечает через $((i*3)) сек"
-              break
-            fi
-            if [ $i -eq 30 ]; then
-              echo "❌ Gateway не отвечает"
-              exit 1
-            fi
-            sleep 3
-          done
+            # Ждем все важные контейнеры
+            wait_for_healthy "niffler-all-db"
+            wait_for_healthy "auth.niffler.dc"
+            wait_for_healthy "gateway.niffler.dc"
+            wait_for_healthy "userdata.niffler.dc"
+            wait_for_healthy "spend.niffler.dc"
+            wait_for_healthy "currency.niffler.dc"
+            wait_for_healthy "frontend.niffler.dc"
+            
+            echo "✅ Все сервисы здоровы!"
+            
+            # Дополнительно проверяем через curl
+            echo "🔍 Проверка через curl:"
+            for i in {1..30}; do
+              if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
+                echo "  Gateway отвечает через $((i*3)) сек"
+                break
+              fi
+              if [ $i -eq 30 ]; then
+                echo "❌ Gateway не отвечает"
+                exit 1
+              fi
+              sleep 3
+            done
 #      - name: Add hosts to /etc/hosts
 #        run: |
 #          echo "127.0.0.1 frontend.niffler.dc" | sudo tee -a /etc/hosts
