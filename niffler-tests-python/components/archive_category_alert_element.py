@@ -7,4 +7,4 @@ class ArchiveCategoryAlertElement:
                                      name="Archive")
 
     def click_archive_button(self):
-        self.archive_button.click_last()
+        self.archive_button.click()
