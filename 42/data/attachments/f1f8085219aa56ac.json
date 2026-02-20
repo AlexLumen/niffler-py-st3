@@ -1,0 +1,16 @@
+[
+    {
+        "id": "216d4f79-5947-43e1-89ad-92a14354ad53",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "0fd2d94e-4208-4ccf-a984-5ba27b7b121c",
+            "name": "pan",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "EUR",
+        "amount": 538.73,
+        "description": "The Galactic Empire is nearing completio",
+        "username": "Alex"
+    }
+]

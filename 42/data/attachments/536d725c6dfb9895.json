@@ -1,0 +1,14 @@
+{
+    "id": "f262017b-44f2-413e-8c4c-032bd41a0e82",
+    "spendDate": "2026-02-19T19:07:13.979+00:00",
+    "category": {
+        "id": "ae8c18fe-cf0d-48a7-92a7-82682c929a7d",
+        "name": "devices",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 900.46,
+    "description": "It is also a garbage-collected runtime s",
+    "username": "Alex"
+}

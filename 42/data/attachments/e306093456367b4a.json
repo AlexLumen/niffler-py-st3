@@ -1,0 +1,14 @@
+{
+    "id": "b4fc0411-5e65-4874-9f69-0c86021c3373",
+    "spendDate": "2026-02-19T19:07:14.619+00:00",
+    "category": {
+        "id": "9a70923c-e147-494c-8ed2-48074610cd4c",
+        "name": "spent",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1028.43,
+    "description": "Initially composing light-hearted and ir",
+    "username": "Alex"
+}

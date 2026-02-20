@@ -1,0 +1,16 @@
+[
+    {
+        "id": "561d16f3-30bb-4bd0-8407-a651d3c5d707",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "e38b1df4-db5a-4802-b627-576b1703aa5e",
+            "name": "fell",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 1153.06,
+        "description": "They are written as strings of consecuti",
+        "username": "Alex"
+    }
+]

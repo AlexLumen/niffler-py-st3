@@ -1,0 +1,14 @@
+{
+    "id": "216d4f79-5947-43e1-89ad-92a14354ad53",
+    "spendDate": "2026-02-19T19:07:14.485+00:00",
+    "category": {
+        "id": "495be4dd-eaf2-47c0-9edd-21c625337788",
+        "name": "implemented",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 867.07,
+    "description": "Messages can be sent to and received fro",
+    "username": "Alex"
+}

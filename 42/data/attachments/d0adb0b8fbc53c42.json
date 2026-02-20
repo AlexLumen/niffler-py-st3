@@ -1,0 +1,14 @@
+{
+    "id": "d17235d3-a91f-4126-bb38-406c37364e0b",
+    "spendDate": "2026-02-19T19:07:14.722+00:00",
+    "category": {
+        "id": "92f97fa8-ebd8-4e8e-8751-8e8ba6815c80",
+        "name": "notify",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1327.79,
+    "description": "She spent her earliest years reading cla",
+    "username": "Alex"
+}

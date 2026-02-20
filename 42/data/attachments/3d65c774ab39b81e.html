@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+    <script src="https://yastatic.net/jquery/2.2.3/jquery.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://yastatic.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://yastatic.net/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="https://yandex.st/highlightjs/8.0/styles/github.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/bash.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/json.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/xml.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre><code>GET to http://gateway.niffler.dc:8090/api/spends/d17235d3-a91f-4126-bb38-406c37364e0b</code></pre>
+</div>
+
+
+
+
+
+    <h4>Headers</h4>
+    <div>
+    
+        <div>
+            <pre><code><b>User-Agent</b>: python-requests/2.32.5</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept-Encoding</b>: gzip, deflate</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Connection</b>: keep-alive</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Authorization</b>: Bearer eyJraWQiOiI3ZjRkNTRhMC0xOWRmLTQxMTgtOTBjMC02ZWJmMWY0MzlmZDciLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjE0NDMzLCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjE4MDMzLCJpYXQiOjE3NzE2MTQ0MzMsImp0aSI6IjE2OWNjMzJkLWI0MjgtNGU4Yi1hM2E0LTAxYTc1YmIxNzhiMyJ9.J4Nq_lg-_TkRiiPn2uYa399biEXZ_X9ImnYqkpe5bwmvR3rjKkTugW6edDbqhcvfHoKlW-5jVgAmfalfiV50wJgHWIomUAwq_y-MSdDYFeeLtFKpmPlHA1j1FBf2hG6Q-A7CEgzDgsI5or9UG3xs_Cz9ZUAZhNqY-F2CVuLQ6M2CI4NyVCmkkCeQACLjVX_ghyrXvvl8qvGP80FGE4qkEXodDY7QhKU5ZCshk1DKskq5DEIt3BRIYZQf_YtQPrHib-9-u9MpKSjtFf28XE3QnXH44IC4KHmIKa8FcUR7vh3nkSaOXS3QWjocqs5hqwd39FpSpHz1UBp7NPCdIItmEw</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Type</b>: application/json</code></pre>
+        </div>
+    
+    </div>
+
+
+
+
+
+
+    <h4>Curl</h4>
+    <div>
+        <pre><code>curl -X GET -H 'Accept: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Authorization: Bearer eyJraWQiOiI3ZjRkNTRhMC0xOWRmLTQxMTgtOTBjMC02ZWJmMWY0MzlmZDciLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjE0NDMzLCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjE4MDMzLCJpYXQiOjE3NzE2MTQ0MzMsImp0aSI6IjE2OWNjMzJkLWI0MjgtNGU4Yi1hM2E0LTAxYTc1YmIxNzhiMyJ9.J4Nq_lg-_TkRiiPn2uYa399biEXZ_X9ImnYqkpe5bwmvR3rjKkTugW6edDbqhcvfHoKlW-5jVgAmfalfiV50wJgHWIomUAwq_y-MSdDYFeeLtFKpmPlHA1j1FBf2hG6Q-A7CEgzDgsI5or9UG3xs_Cz9ZUAZhNqY-F2CVuLQ6M2CI4NyVCmkkCeQACLjVX_ghyrXvvl8qvGP80FGE4qkEXodDY7QhKU5ZCshk1DKskq5DEIt3BRIYZQf_YtQPrHib-9-u9MpKSjtFf28XE3QnXH44IC4KHmIKa8FcUR7vh3nkSaOXS3QWjocqs5hqwd39FpSpHz1UBp7NPCdIItmEw' -H 'Connection: keep-alive' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.32.5' http://gateway.niffler.dc:8090/api/spends/d17235d3-a91f-4126-bb38-406c37364e0b</code></pre>
+    </div>
+
+</body>
+</html>

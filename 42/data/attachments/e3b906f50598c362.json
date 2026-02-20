@@ -1,0 +1,14 @@
+{
+    "id": "db11ca27-605a-4daf-b1e5-3caa8f9aba29",
+    "spendDate": "2026-02-19T19:07:14.338+00:00",
+    "category": {
+        "id": "38916cc0-97df-43c9-a0a4-0d0914efde72",
+        "name": "organized",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 968.61,
+    "description": "The arguments can be primitive data type",
+    "username": "Alex"
+}
