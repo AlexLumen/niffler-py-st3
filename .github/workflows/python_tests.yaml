@@ -70,41 +70,6 @@ jobs:
       - name: Build containers
         run: |
             bash docker-compose-dev.sh
-            sleep 30
-          
-          # Проверяем каждый сервис
-          echo "🔍 Проверка статуса сервисов:"
-          
-          # Функция проверки health endpoint
-          check_service() {
-            local service=$1
-            local port=$2
-            local max_attempts=30
-            local attempt=1
-            
-            echo -n "  Checking $service:$port... "
-            while [ $attempt -le $max_attempts ]; do
-              if curl -s -f "http://$service:$port/actuator/health" > /dev/null 2>&1; then
-                echo "✅ UP (after ${attempt}s)"
-                return 0
-              fi
-              sleep 1
-              attempt=$((attempt + 1))
-            done
-            echo "❌ DOWN after $max_attempts seconds"
-            return 1
-          }
-          
-          # Проверяем все сервисы (подставьте реальные имена)
-          check_service "auth.niffler.dc" 9000
-          check_service "gateway.niffler.dc" 8090
-          check_service "spend.niffler.dc" 8082
-          check_service "userdata.niffler.dc" 8089
-          check_service "currency.niffler.dc" 8081
-          check_service "frontend.niffler.dc" 80
-          
-          echo "✅ Все сервисы запущены"
-          
 
 #      - name: Add hosts to /etc/hosts
 #        run: |
@@ -135,7 +100,7 @@ jobs:
         working-directory: ./niffler-tests-python
         run: |
           echo "🧪 Запуск тестов Python..."
-          poetry run pytest --alluredir=allure-results
+          poetry run pytest -v --tb=long --capture=no
         continue-on-error: false
       - name: Upload Logs as artifact
         uses: actions/upload-artifact@v4
