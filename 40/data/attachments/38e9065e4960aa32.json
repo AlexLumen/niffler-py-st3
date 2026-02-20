@@ -1,0 +1,14 @@
+{
+    "id": "ce953262-7b05-47a7-b29f-1fef55cbea69",
+    "spendDate": "2026-02-19T18:39:55.129+00:00",
+    "category": {
+        "id": "0b8f7dd4-f849-4001-b3eb-a4e28e15f58d",
+        "name": "revenue",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 745.03,
+    "description": "Where are my pants?",
+    "username": "Alex"
+}

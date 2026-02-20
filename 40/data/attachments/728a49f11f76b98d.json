@@ -1,0 +1,14 @@
+{
+    "id": "b448eb6c-a848-4f82-b3b3-1b04380de727",
+    "spendDate": "2026-02-19T18:39:55.589+00:00",
+    "category": {
+        "id": "d4efd3f9-e566-4ed2-bca7-d449b85d8508",
+        "name": "fleet",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 571.76,
+    "description": "The Galactic Empire is nearing completio",
+    "username": "Alex"
+}

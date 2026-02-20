@@ -1,0 +1,16 @@
+[
+    {
+        "id": "50bda828-b7ed-44ec-81f0-a510936b36d6",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "2213d66d-7f90-4f01-8826-251fc7c7429d",
+            "name": "milk",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 1015.96,
+        "description": "Erlang is a general-purpose, concurrent,",
+        "username": "Alex"
+    }
+]

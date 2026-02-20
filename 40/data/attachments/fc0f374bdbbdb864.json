@@ -1,0 +1,16 @@
+[
+    {
+        "id": "7b1d27a7-3d6a-491f-8ec5-7e9cb4fb8f40",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "069e52c5-e682-4c93-adb9-f8392c0627f7",
+            "name": "rss",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 1472.68,
+        "description": "",
+        "username": "Alex"
+    }
+]

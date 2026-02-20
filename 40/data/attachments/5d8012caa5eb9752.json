@@ -1,0 +1,14 @@
+{
+    "id": "8bdda773-7b36-4901-b559-15507d48e282",
+    "spendDate": "2026-02-19T18:39:55.365+00:00",
+    "category": {
+        "id": "8f10810b-3d42-4038-910a-80bf3195629b",
+        "name": "gold",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 606.45,
+    "description": "Any element of a tuple can be accessed i",
+    "username": "Alex"
+}

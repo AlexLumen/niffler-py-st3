@@ -1,0 +1,14 @@
+{
+    "id": "65c483c8-dba3-41e8-9d42-a5199d696ec6",
+    "spendDate": "2026-02-19T18:39:55.712+00:00",
+    "category": {
+        "id": "f6da659b-2f7c-45d7-bef2-ebf88d614b5c",
+        "name": "power",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1283.91,
+    "description": "Atoms are used within a program to denot",
+    "username": "Alex"
+}
