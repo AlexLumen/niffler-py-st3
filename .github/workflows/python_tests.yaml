@@ -70,6 +70,33 @@ jobs:
       - name: Build containers
         run: |
             bash docker-compose-dev.sh
+          sleep 30
+          
+          echo -n "  Проверка gateway: "
+          max_attempts=30  # 30 попыток по 2 секунды = 1 минута
+          for i in $(seq 1 $max_attempts); do
+            if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
+              echo "✅ готов после $((i*2)) секунд"
+              break
+            fi
+            if [ $i -eq $max_attempts ]; then
+              echo "❌ не дождались"
+              exit 1
+            fi
+            sleep 2
+          done
+          
+          echo -n "  Проверка auth: "
+          for i in $(seq 1 20); do
+            if curl -s http://auth.niffler.dc:9000/actuator/health | grep -q "UP"; then
+              echo "✅ готов после $((i*2)) секунд"
+              break
+            fi
+            sleep 2
+          done
+          sleep 10
+          
+          echo "✅ Все сервисы готовы к тестам"
 
 #      - name: Add hosts to /etc/hosts
 #        run: |
