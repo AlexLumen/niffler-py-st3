@@ -72,33 +72,62 @@ jobs:
             bash docker-compose-dev.sh
             sleep 30
 
-            echo -n "  Проверка gateway: "
-            max_attempts=30  # 30 попыток по 2 секунды = 1 минута
-            for i in $(seq 1 $max_attempts); do
-              if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
-                echo "✅ готов после $((i*2)) секунд"
-                break
+            wait_for_healthy() {
+            local container=$1
+            local max_attempts=60
+            local attempt=1
+            
+            echo -n "  $container: "
+            while [ $attempt -le $max_attempts ]; do
+              # Проверяем статус через docker inspect
+              status=$(docker inspect --format='{{.State.Health.Status}}' $container 2>/dev/null || echo "no health")
+              
+              if [ "$status" = "healthy" ]; then
+                echo "✅ healthy (через $((attempt*3)) сек)"
+                return 0
               fi
-              if [ $i -eq $max_attempts ]; then
-                echo "❌ не дождались"
-                exit 1
+              
+              if [ "$status" = "no health" ]; then
+                # Если нет health check, проверяем что контейнер просто running
+                running=$(docker inspect --format='{{.State.Status}}' $container)
+                if [ "$running" = "running" ]; then
+                  echo "✅ running (без health check)"
+                  return 0
+                fi
               fi
-              sleep 2
+              
+              sleep 3
+              attempt=$((attempt + 1))
             done
-    
-            echo -n "  Проверка auth: "
-            for i in $(seq 1 20); do
-              if curl -s http://auth.niffler.dc:9000/actuator/health | grep -q "UP"; then
-                echo "✅ готов после $((i*2)) секунд"
-                break
-              fi
-              sleep 2
-            done
-
-            echo "⏳ Финальная пауза 10 секунд..."
-            sleep 10
-    
-            echo "✅ Все сервисы готовы к тестам"
+            
+            echo "❌ не healthy после $((max_attempts*3)) сек"
+            return 1
+          }
+          
+          # Ждем все важные контейнеры
+          wait_for_healthy "niffler-all-db"
+          wait_for_healthy "auth.niffler.dc"
+          wait_for_healthy "gateway.niffler.dc"
+          wait_for_healthy "userdata.niffler.dc"
+          wait_for_healthy "spend.niffler.dc"
+          wait_for_healthy "currency.niffler.dc"
+          wait_for_healthy "frontend.niffler.dc"
+          
+          echo "✅ Все сервисы здоровы!"
+          
+          # Дополнительно проверяем через curl
+          echo "🔍 Проверка через curl:"
+          for i in {1..30}; do
+            if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
+              echo "  Gateway отвечает через $((i*3)) сек"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "❌ Gateway не отвечает"
+              exit 1
+            fi
+            sleep 3
+          done
 #      - name: Add hosts to /etc/hosts
 #        run: |
 #          echo "127.0.0.1 frontend.niffler.dc" | sudo tee -a /etc/hosts
