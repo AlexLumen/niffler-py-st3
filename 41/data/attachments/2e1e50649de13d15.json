@@ -1,0 +1,16 @@
+[
+    {
+        "id": "c7180150-fd7e-40d6-8686-3282b43732eb",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "e0237fbb-2045-4d0c-8122-d02e2889ee62",
+            "name": "median",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 978.67,
+        "description": "In 1989 the building was heavily damaged",
+        "username": "Alex"
+    }
+]

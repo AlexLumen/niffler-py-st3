@@ -1,0 +1,14 @@
+{
+    "id": "16758a6f-0bec-482a-b884-c01dd4ad74b5",
+    "spendDate": "2026-02-19T18:50:32.972+00:00",
+    "category": {
+        "id": "29b83361-a74c-4b20-bdce-0adaf9ddeb5a",
+        "name": "thailand",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 1275.72,
+    "description": "The syntax {D1,D2,...,Dn} denotes a tupl",
+    "username": "Alex"
+}

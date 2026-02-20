@@ -1,0 +1,16 @@
+[
+    {
+        "id": "477aa46f-bbbd-4c7c-b377-2a5a3633ec63",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "b79a3117-dae8-4141-93c8-d255c7b944c5",
+            "name": "roles",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "EUR",
+        "amount": 1388.04,
+        "description": "",
+        "username": "Alex"
+    }
+]

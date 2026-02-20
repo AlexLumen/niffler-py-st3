@@ -1,0 +1,16 @@
+[
+    {
+        "id": "7496f72b-7398-4b89-ac91-051a6f1077ae",
+        "spendDate": "2026-02-18T21:00:00.000+00:00",
+        "category": {
+            "id": "90db1c50-87a6-4d2b-99c0-566cf4a05878",
+            "name": "rent",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 579.67,
+        "description": "Ports are used to communicate with the e",
+        "username": "Alex"
+    }
+]
