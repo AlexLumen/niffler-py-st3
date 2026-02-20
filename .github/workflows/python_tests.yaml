@@ -69,88 +69,11 @@ jobs:
 
       - name: Build containers
         run: |
-            bash docker-compose-dev.sh
-            sleep 30
+          bash docker-compose-dev.sh
 
-            wait_for_healthy() {
-            local container=$1
-            local max_attempts=60
-            local attempt=1
-            
-            echo -n "  $container: "
-            while [ $attempt -le $max_attempts ]; do
-              # Проверяем статус через docker inspect
-              status=$(docker inspect --format='{{.State.Health.Status}}' $container 2>/dev/null || echo "no health")
-              
-              if [ "$status" = "healthy" ]; then
-                echo "✅ healthy (через $((attempt*3)) сек)"
-                return 0
-              fi
-              
-              if [ "$status" = "no health" ]; then
-                # Если нет health check, проверяем что контейнер просто running
-                running=$(docker inspect --format='{{.State.Status}}' $container)
-                if [ "$running" = "running" ]; then
-                  echo "✅ running (без health check)"
-                  return 0
-                fi
-              fi
-              
-              sleep 3
-              attempt=$((attempt + 1))
-            done
-            
-            echo "❌ не healthy после $((max_attempts*3)) сек"
-            return 1
-            }
-          
-            # Ждем все важные контейнеры
-            wait_for_healthy "niffler-all-db"
-            wait_for_healthy "auth.niffler.dc"
-            wait_for_healthy "gateway.niffler.dc"
-            wait_for_healthy "userdata.niffler.dc"
-            wait_for_healthy "spend.niffler.dc"
-            wait_for_healthy "currency.niffler.dc"
-            wait_for_healthy "frontend.niffler.dc"
-            
-            echo "✅ Все сервисы здоровы!"
-            
-            # Дополнительно проверяем через curl
-            echo "🔍 Проверка через curl:"
-            for i in {1..30}; do
-              if curl -s http://gateway.niffler.dc:8090/actuator/health | grep -q "UP"; then
-                echo "  Gateway отвечает через $((i*3)) сек"
-                break
-              fi
-              if [ $i -eq 30 ]; then
-                echo "❌ Gateway не отвечает"
-                exit 1
-              fi
-              sleep 3
-            done
-#      - name: Add hosts to /etc/hosts
-#        run: |
-#          echo "127.0.0.1 frontend.niffler.dc" | sudo tee -a /etc/hosts
-#          echo "127.0.0.1 auth.niffler.dc" | sudo tee -a /etc/hosts
-#          echo "127.0.0.1 gateway.niffler.dc" | sudo tee -a /etc/hosts
-#          cat /etc/hosts | grep niffler
-      - name: Add hosts with IPs
+      - name: Add in hosts
         run: |
           echo -e "127.0.0.1\tlocalhost\n127.0.0.1\tfrontend.niffler.dc\n127.0.0.1\tauth.niffler.dc\n127.0.0.1\tgateway.niffler.dc\n127.0.0.1\tuserdata.niffler.dc\n127.0.0.1\tkafka" | sudo tee -a /etc/hosts
-#        run: |
-#            # Получаем IP контейнеров
-#            AUTH_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' auth.niffler.dc)
-#            GATEWAY_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gateway.niffler.dc)
-#            FRONTEND_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' frontend.niffler.dc)
-#
-#            echo "Auth IP: $AUTH_IP"
-#            echo "Gateway IP: $GATEWAY_IP"
-#            echo "Frontend IP: $FRONTEND_IP"
-#
-#            # Добавляем в hosts
-#            echo "$AUTH_IP auth.niffler.dc" | sudo tee -a /etc/hosts
-#            echo "$GATEWAY_IP gateway.niffler.dc" | sudo tee -a /etc/hosts
-#            echo "$FRONTEND_IP frontend.niffler.dc" | sudo tee -a /etc/hosts
 
 
       - name: Run tests with pytest
