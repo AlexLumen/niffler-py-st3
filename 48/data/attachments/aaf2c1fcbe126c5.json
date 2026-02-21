@@ -1,0 +1,16 @@
+[
+    {
+        "id": "12ad7922-a512-484d-a1ae-e34e1bc19268",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "58b0f40f-b240-4396-977f-952bedf399ab",
+            "name": "arrival",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 573.62,
+        "description": "Do you have any idea why this is not wor",
+        "username": "Alex"
+    }
+]

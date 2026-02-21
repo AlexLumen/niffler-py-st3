@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+    <script src="https://yastatic.net/jquery/2.2.3/jquery.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://yastatic.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://yastatic.net/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="https://yandex.st/highlightjs/8.0/styles/github.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/bash.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/json.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/xml.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre><code>POST to http://gateway.niffler.dc:8090/api/spends/add</code></pre>
+</div>
+
+
+    <h4>Body</h4>
+    <div>
+        <pre><code>b'{"amount": 573.62, "description": "Do you have any idea why this is not wor", "category": {"name": "arrival", "username": null, "archived": null}, "spendDate": "2026-02-20T17:32:45.947649", "currency": "USD"}'</code></pre>
+    </div>
+
+
+
+
+    <h4>Headers</h4>
+    <div>
+    
+        <div>
+            <pre><code><b>User-Agent</b>: python-requests/2.32.5</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept-Encoding</b>: gzip, deflate</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Connection</b>: keep-alive</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Authorization</b>: Bearer eyJraWQiOiIwODY0YjYxOC04ZjhlLTQyZTItYjI1Yi1iNjM4MWM2ZDk1MjYiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjk1MTY0LCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjk4NzY0LCJpYXQiOjE3NzE2OTUxNjQsImp0aSI6ImY2ZTE2MjY2LWU5MDQtNDJiNC05NDZmLWEzOTFmOTBlNzJmZSJ9.AqCR5zQ_uf_E61nA5X66XMY7NO1raGzk6vOZnE3_6yWuRhRUIe6BsYm9cIfJ3EegKA0wSp1XIcdeqwFHKod6OJN0ydDy1ddzXnZHA4fwI_hpqgiJ2S2Bqssnxzgpdzjju4NGW_5JzeRgs5-kPsW5kz5rM5G2xXBRJ_7xwDjUGcbdBLNSo9L-uGPN6Doqdh1IWihUuBNWa3zrdQqoJYbbY-t2oIX1G8H0SXsT9bu1gXPrvj93FzklN9opdxJdW3qeJQ2zQQwWdqF_gUzgXv6dCif60l0CeGFmGIXivhcAx7Pb_2XRWGYE2XQyAi0MJuRfW7rGcDxIQuzPnaBX_uRxrg</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Type</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Length</b>: 208</code></pre>
+        </div>
+    
+    </div>
+
+
+
+
+
+
+    <h4>Curl</h4>
+    <div>
+        <pre><code>curl -X POST -H 'Accept: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Authorization: Bearer eyJraWQiOiIwODY0YjYxOC04ZjhlLTQyZTItYjI1Yi1iNjM4MWM2ZDk1MjYiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjk1MTY0LCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjk4NzY0LCJpYXQiOjE3NzE2OTUxNjQsImp0aSI6ImY2ZTE2MjY2LWU5MDQtNDJiNC05NDZmLWEzOTFmOTBlNzJmZSJ9.AqCR5zQ_uf_E61nA5X66XMY7NO1raGzk6vOZnE3_6yWuRhRUIe6BsYm9cIfJ3EegKA0wSp1XIcdeqwFHKod6OJN0ydDy1ddzXnZHA4fwI_hpqgiJ2S2Bqssnxzgpdzjju4NGW_5JzeRgs5-kPsW5kz5rM5G2xXBRJ_7xwDjUGcbdBLNSo9L-uGPN6Doqdh1IWihUuBNWa3zrdQqoJYbbY-t2oIX1G8H0SXsT9bu1gXPrvj93FzklN9opdxJdW3qeJQ2zQQwWdqF_gUzgXv6dCif60l0CeGFmGIXivhcAx7Pb_2XRWGYE2XQyAi0MJuRfW7rGcDxIQuzPnaBX_uRxrg' -H 'Connection: keep-alive' -H 'Content-Length: 208' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.32.5' -d '{"amount": 573.62, "description": "Do you have any idea why this is not wor", "category": {"name": "arrival", "username": null, "archived": null}, "spendDate": "2026-02-20T17:32:45.947649", "currency": "USD"}' http://gateway.niffler.dc:8090/api/spends/add</code></pre>
+    </div>
+
+</body>
+</html>

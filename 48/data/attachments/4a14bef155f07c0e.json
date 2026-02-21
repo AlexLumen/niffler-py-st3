@@ -1,0 +1,14 @@
+{
+    "id": "8a2ac153-6991-44f7-aa59-9c3243345e93",
+    "spendDate": "2026-02-20T17:32:46.106+00:00",
+    "category": {
+        "id": "ead0997a-106c-476a-bb1d-591a03eca229",
+        "name": "way",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1116.67,
+    "description": "Type classes first appeared in the Haske",
+    "username": "Alex"
+}

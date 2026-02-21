@@ -1,0 +1,16 @@
+[
+    {
+        "id": "08c6b03e-31cd-4bd7-b220-19bc19dcf583",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "8d53ac38-2ce2-4c53-8c56-1eed8bff9490",
+            "name": "objective",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 790.87,
+        "description": "Ports are created with the built-in func",
+        "username": "Alex"
+    }
+]

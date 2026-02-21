@@ -1,0 +1,14 @@
+{
+    "id": "8a2ac153-6991-44f7-aa59-9c3243345e93",
+    "spendDate": "2026-02-20T17:32:46.105+00:00",
+    "category": {
+        "id": "4bd0a908-522c-48c2-9f4e-5984362a867c",
+        "name": "scenes",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 1473.17,
+    "description": "Atoms are used within a program to denot",
+    "username": "Alex"
+}

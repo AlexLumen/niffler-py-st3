@@ -1,0 +1,14 @@
+[
+    {
+        "id": "2a9b9977-7054-4a02-aace-4ec0e8ea8329",
+        "name": "bay",
+        "username": "Alex",
+        "archived": false
+    },
+    {
+        "id": "5f975912-4b81-4f88-9374-3495d6c44fbd",
+        "name": "jazz_edited",
+        "username": "Alex",
+        "archived": true
+    }
+]

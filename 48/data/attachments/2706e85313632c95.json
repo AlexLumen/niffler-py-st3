@@ -1,0 +1,14 @@
+{
+    "id": "153d0c91-2e66-4c4d-bf06-a246df4c7f8a",
+    "spendDate": "2026-02-20T17:32:46.235+00:00",
+    "category": {
+        "id": "a43b4c46-9c41-4c2a-b7f0-d6dc68775f40",
+        "name": "states",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1307.03,
+    "description": "Do you have any idea why this is not wor",
+    "username": "Alex"
+}
