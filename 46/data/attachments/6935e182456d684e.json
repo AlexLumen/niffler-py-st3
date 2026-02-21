@@ -1,0 +1,16 @@
+[
+    {
+        "id": "a2d1dde1-b50f-492a-9109-7f3a744e08d3",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "4113bc44-31e4-4c36-9113-9a5a8ae83452",
+            "name": "indicator",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "EUR",
+        "amount": 648.46,
+        "description": "Type classes first appeared in the Haske",
+        "username": "Alex"
+    }
+]

@@ -1,0 +1,14 @@
+{
+    "id": "a544baa9-ee4b-469a-adca-ff0a736e25a9",
+    "spendDate": "2026-02-19T21:00:00.000+00:00",
+    "category": {
+        "id": "e878051d-6d1e-4c9d-9c3c-1ec0288c4832",
+        "name": "ca",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 824.39,
+    "description": "He looked inquisitively at his keyboard ",
+    "username": "Alex"
+}

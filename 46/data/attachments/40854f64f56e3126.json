@@ -1,0 +1,16 @@
+[
+    {
+        "id": "75bf75b4-8efc-4212-809d-7b136d119bf1",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "713dbf50-c4f1-4ba4-8096-0cd0bc6b0b98",
+            "name": "may",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 830.92,
+        "description": "Atoms can contain any character if they ",
+        "username": "Alex"
+    }
+]

@@ -1,0 +1,14 @@
+{
+    "id": "6189ee45-84ea-4bf7-b9d6-23ac0c22abcb",
+    "spendDate": "2026-02-20T16:25:30.212+00:00",
+    "category": {
+        "id": "e72fe679-e21c-417f-9e0d-ce7bbaeede82",
+        "name": "might",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 842.36,
+    "description": "I don't even care.",
+    "username": "Alex"
+}

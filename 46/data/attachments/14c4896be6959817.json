@@ -1,0 +1,14 @@
+{
+    "id": "c80880e4-d6d5-4018-a6be-9ee02c6e92e5",
+    "spendDate": "2026-02-20T16:25:30.011+00:00",
+    "category": {
+        "id": "8d7c2413-fdd7-44d5-81da-103409d480d4",
+        "name": "constraints",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 694.3,
+    "description": "",
+    "username": "Alex"
+}
