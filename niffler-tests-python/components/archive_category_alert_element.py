@@ -9,3 +9,4 @@ class ArchiveCategoryAlertElement:
     def click_archive_button(self):
         self.archive_button.should_be_visible()
         self.archive_button.click()
+        self.archive_button.click()
