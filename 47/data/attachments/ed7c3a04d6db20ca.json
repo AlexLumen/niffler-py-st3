@@ -1,0 +1,16 @@
+[
+    {
+        "id": "a9f9fd9e-0519-4b49-9bd0-3df8883a45e1",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "54668ff8-e9df-4fce-9d18-6c7beaa2dc76",
+            "name": "branch",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 526.81,
+        "description": "Haskell is a standardized, general-purpo",
+        "username": "Alex"
+    }
+]

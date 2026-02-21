@@ -1,0 +1,14 @@
+{
+    "id": "def014d9-924c-4d36-b4ea-3aed35064b7b",
+    "spendDate": "2026-02-20T17:06:59.778+00:00",
+    "category": {
+        "id": "55f8c540-03ac-4b7c-aa68-32f901739cac",
+        "name": "th",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 1272.4,
+    "description": "",
+    "username": "Alex"
+}

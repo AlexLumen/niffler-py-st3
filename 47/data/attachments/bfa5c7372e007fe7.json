@@ -1,0 +1,16 @@
+[
+    {
+        "id": "f7e794ce-471f-4149-aaaf-b41f903e41c8",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "bb77ba73-8532-41f6-93e1-057bdaaba173",
+            "name": "temperature",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 1054.71,
+        "description": "Type classes first appeared in the Haske",
+        "username": "Alex"
+    }
+]

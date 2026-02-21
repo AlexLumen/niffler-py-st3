@@ -1,0 +1,14 @@
+{
+    "id": "ef12184c-e5a9-46cf-934f-9b3ba22e8742",
+    "spendDate": "2026-02-20T17:06:59.987+00:00",
+    "category": {
+        "id": "c595eae6-6dda-424a-a167-99df9a4a5462",
+        "name": "tennessee",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 1442.81,
+    "description": "Do you come here often?",
+    "username": "Alex"
+}

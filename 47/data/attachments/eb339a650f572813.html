@@ -1,0 +1,80 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset = UTF-8">
+    <script src="https://yastatic.net/jquery/2.2.3/jquery.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://yastatic.net/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://yastatic.net/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link type="text/css" href="https://yandex.st/highlightjs/8.0/styles/github.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/bash.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/json.min.js"></script>
+    <script type="text/javascript" src="https://yandex.st/highlightjs/8.0/languages/xml.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        pre {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <pre><code>PATCH to http://gateway.niffler.dc:8090/api/categories/update</code></pre>
+</div>
+
+
+    <h4>Body</h4>
+    <div>
+        <pre><code>b'{"id": "5b9081d1-80ad-449c-80d9-edd765380375", "name": "edit_category", "username": "Alex", "archived": false}'</code></pre>
+    </div>
+
+
+
+
+    <h4>Headers</h4>
+    <div>
+    
+        <div>
+            <pre><code><b>User-Agent</b>: python-requests/2.32.5</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept-Encoding</b>: gzip, deflate</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Accept</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Connection</b>: keep-alive</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Authorization</b>: Bearer eyJraWQiOiI1ZTNlMGI5Yi1kOTgyLTQ2N2MtODA4NS0yMTIxNzVjZjEyZDMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjkzNjE4LCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjk3MjE4LCJpYXQiOjE3NzE2OTM2MTgsImp0aSI6IjNiYjQ5MzRiLTI3MjItNDkzMy1hNDc5LWZhYzJhOTZiZDQ2NyJ9.ZxLpNRKOnQ7h7C5y563i-xkJgz9V9qu8BEfcBbrtuq6jt1opA7Eibf27Bq1UGkQrswjJipw3M6zvXfyuT_rjus69mACDqWw3S8DHkXH9t9gLYvzIYG6yNlKUAduoYIg7dIICFyGpj-oifadrcgSZ12QB6rKUt8pjfcp9qjJpqbhmmfm3lGDIp7glF4855fWkMrER6CPscbAeyArpb8FnlqbkxDzdBunKUptq1c7MasLssjqYpu9L2qK-g-vMTVXxdLJevS7POmynDm60lvoaojXfQkxOFRUPN3YsgGhciEhH-O6oT-9HBUlYWmj7bCaMcbg3QOB2nPUXEgXsKzBvHg</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Type</b>: application/json</code></pre>
+        </div>
+    
+        <div>
+            <pre><code><b>Content-Length</b>: 110</code></pre>
+        </div>
+    
+    </div>
+
+
+
+
+
+
+    <h4>Curl</h4>
+    <div>
+        <pre><code>curl -X PATCH -H 'Accept: application/json' -H 'Accept-Encoding: gzip, deflate' -H 'Authorization: Bearer eyJraWQiOiI1ZTNlMGI5Yi1kOTgyLTQ2N2MtODA4NS0yMTIxNzVjZjEyZDMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJBbGV4IiwiYXVkIjoiY2xpZW50IiwibmJmIjoxNzcxNjkzNjE4LCJzY29wZSI6WyJvcGVuaWQiXSwiaXNzIjoiaHR0cDovL2F1dGgubmlmZmxlci5kYzo5MDAwIiwiZXhwIjoxNzcxNjk3MjE4LCJpYXQiOjE3NzE2OTM2MTgsImp0aSI6IjNiYjQ5MzRiLTI3MjItNDkzMy1hNDc5LWZhYzJhOTZiZDQ2NyJ9.ZxLpNRKOnQ7h7C5y563i-xkJgz9V9qu8BEfcBbrtuq6jt1opA7Eibf27Bq1UGkQrswjJipw3M6zvXfyuT_rjus69mACDqWw3S8DHkXH9t9gLYvzIYG6yNlKUAduoYIg7dIICFyGpj-oifadrcgSZ12QB6rKUt8pjfcp9qjJpqbhmmfm3lGDIp7glF4855fWkMrER6CPscbAeyArpb8FnlqbkxDzdBunKUptq1c7MasLssjqYpu9L2qK-g-vMTVXxdLJevS7POmynDm60lvoaojXfQkxOFRUPN3YsgGhciEhH-O6oT-9HBUlYWmj7bCaMcbg3QOB2nPUXEgXsKzBvHg' -H 'Connection: keep-alive' -H 'Content-Length: 110' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.32.5' -d '{"id": "5b9081d1-80ad-449c-80d9-edd765380375", "name": "edit_category", "username": "Alex", "archived": false}' http://gateway.niffler.dc:8090/api/categories/update</code></pre>
+    </div>
+
+</body>
+</html>

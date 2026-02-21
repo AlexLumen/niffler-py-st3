@@ -1,0 +1,16 @@
+[
+    {
+        "id": "a3bf0df9-5f85-4770-a7fe-0ad68e80e60e",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "6890b8d5-4d1b-4825-9d5d-dbebb24f15cf",
+            "name": "boss",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "EUR",
+        "amount": 926.36,
+        "description": "She spent her earliest years reading cla",
+        "username": "Alex"
+    }
+]

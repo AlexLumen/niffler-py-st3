@@ -1,0 +1,14 @@
+[
+    {
+        "id": "4f88d87c-d34d-4794-a83b-4e8eacd7f0e2",
+        "name": "editions",
+        "username": "Alex",
+        "archived": false
+    },
+    {
+        "id": "d6c363d0-1c83-4e6f-b074-e7c7b41ae28a",
+        "name": "regulations",
+        "username": "Alex",
+        "archived": true
+    }
+]

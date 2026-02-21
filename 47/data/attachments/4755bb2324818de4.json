@@ -1,0 +1,14 @@
+{
+    "id": "88832793-dbaa-4558-a0bf-ff21ab3eceed",
+    "spendDate": "2026-02-20T17:06:59.706+00:00",
+    "category": {
+        "id": "dfaae41f-aae0-4b6c-9a1c-063e78d1b339",
+        "name": "church",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1209.72,
+    "description": "He looked inquisitively at his keyboard ",
+    "username": "Alex"
+}

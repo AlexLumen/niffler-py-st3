@@ -1,0 +1,14 @@
+{
+    "id": "1cf83b55-e6f4-4944-8b4e-9c93a5746c59",
+    "spendDate": "2026-02-20T17:06:59.370+00:00",
+    "category": {
+        "id": "8d038b18-c29f-444a-8e1c-6ba6f65e3c4f",
+        "name": "grand",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "KZT",
+    "amount": 503.69,
+    "description": "Any element of a tuple can be accessed i",
+    "username": "Alex"
+}

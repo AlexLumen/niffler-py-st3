@@ -1,0 +1,14 @@
+{
+    "id": "a9f9fd9e-0519-4b49-9bd0-3df8883a45e1",
+    "spendDate": "2026-02-20T17:06:59.850+00:00",
+    "category": {
+        "id": "7b0ad139-ddd8-40e5-8b3b-7a6ad0a0d066",
+        "name": "nationwide",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1280.33,
+    "description": "He looked inquisitively at his keyboard ",
+    "username": "Alex"
+}
