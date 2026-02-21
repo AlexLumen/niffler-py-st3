@@ -1,0 +1,14 @@
+{
+    "id": "7462e381-9423-4466-8f50-7708a558737f",
+    "spendDate": "2026-02-20T15:37:59.362+00:00",
+    "category": {
+        "id": "6d1848a6-2dfd-4691-9e72-d75ebe81e33c",
+        "name": "outdoors",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 701.52,
+    "description": "Its main implementation is the Glasgow H",
+    "username": "Alex"
+}

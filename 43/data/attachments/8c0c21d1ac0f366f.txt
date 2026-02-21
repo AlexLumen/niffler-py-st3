@@ -1,0 +1,1 @@
+DELETE FROM category WHERE category.id = bab18fac-0239-4cad-af31-6a026a0959ae

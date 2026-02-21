@@ -1,0 +1,14 @@
+{
+    "id": "05f16eeb-336d-4034-9623-da760a883dbd",
+    "spendDate": "2026-02-20T15:37:59.214+00:00",
+    "category": {
+        "id": "bab18fac-0239-4cad-af31-6a026a0959ae",
+        "name": "dvd",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 810.13,
+    "description": "Make me a sandwich.",
+    "username": "Alex"
+}

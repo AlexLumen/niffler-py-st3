@@ -1,0 +1,14 @@
+{
+    "id": "4600ca80-8d37-4c93-bd0e-706c65720de1",
+    "spendDate": "2026-02-20T15:37:59.506+00:00",
+    "category": {
+        "id": "b261ea7b-42fe-4ef7-a9af-c45c64d9afcd",
+        "name": "benefit",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1471.87,
+    "description": "Do you come here often?",
+    "username": "Alex"
+}

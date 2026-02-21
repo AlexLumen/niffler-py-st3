@@ -1,0 +1,16 @@
+[
+    {
+        "id": "6603db8f-ce03-4b65-a707-cf266e06bff7",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "28031696-7b61-4d52-9d49-b13225180f94",
+            "name": "salary",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 1053.87,
+        "description": "",
+        "username": "Alex"
+    }
+]

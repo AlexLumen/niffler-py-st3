@@ -1,0 +1,16 @@
+[
+    {
+        "id": "119f9cee-f4b8-42b9-812a-587b2af96d0d",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "b3e57b93-86df-412e-b489-a260ed463ec2",
+            "name": "begin",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 1267.21,
+        "description": "Do you have any idea why this is not wor",
+        "username": "Alex"
+    }
+]
