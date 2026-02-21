@@ -4,14 +4,15 @@ import pytest
 
 
 @pytest.fixture
-def archive_category(request, browser, spend_data_for_add, spends_client):
+def delete_categories(request, envs, category_db, spend_data_for_add):
     def teardown():
-        categories = spends_client.get_categories()
-        for category in categories:
-            if category.name in [spend_data_for_add.category.name, f"{spend_data_for_add.category.name}_edited"]:
-                category.archived = True
-                spends_client.update_category(category)
-
+        category_in_db = category_db.get_category_by_name(envs.username, spend_data_for_add.category.name)
+        if category_in_db is not None:
+            category_db.delete_category(category_in_db.id)
+        category_in_db = category_db.get_category_by_name(envs.username,
+                                                          f"{spend_data_for_add.category.name}_edited")
+        if category_in_db is not None:
+            category_db.delete_category(category_in_db.id)
     request.addfinalizer(teardown)
 
 

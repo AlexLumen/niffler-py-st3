@@ -59,15 +59,20 @@ class Component(ABC):
             locator = self.get_locator(**kwargs)
             expect(locator).not_to_be_visible()
 
+    def should_not_be_visible_by_text(self, text, **kwargs):
+        with allure.step(f'Проверить что {self.type_of} "{self.name}" не отображается'):
+            locator = self.get_locator(**kwargs).filter(has_text=text)
+            expect(locator).not_to_be_visible()
+
     def should_have_text(self, text, **kwargs):
         with allure.step(f'Проверить что {self.type_of} "{self.name}" содержит текст "{text}"'):
             locator = self.get_locator(**kwargs)
             expect(locator).to_have_text(text)
 
-    def should_have_text_first(self, text, **kwargs):
-        with allure.step(f'Проверить что первый {self.type_of} "{self.name}" содержит текст "{text}"'):
+    def should_have_text_filtered(self, text, **kwargs):
+        with allure.step(f'Проверить что {self.type_of} "{self.name}" содержит текст "{text}"'):
             locator = self.get_locator(**kwargs)
-            first_locator = locator.first
+            first_locator = locator.filter(has_text=text)
             expect(first_locator).to_have_text(text)
 
     def get_element_attribute_from_list_by_text(self, text, attribute_name, **kwargs):

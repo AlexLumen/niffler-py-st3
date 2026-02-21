@@ -28,7 +28,7 @@ class ProfilePage:
         self.add_category_input.press('Enter')
 
     def check_added_new_category(self, category_value):
-        self.category_tag.should_have_text_first(category_value)
+        self.category_tag.should_have_text_filtered(category_value)
 
     def check_category_input_error_message(self):
         self.category_input_error_message.should_be_visible()
@@ -44,13 +44,13 @@ class ProfilePage:
         self.edit_category_input.press('Enter')
 
     def check_edited_category(self, category_value):
-        self.category_tag.should_have_text_first(f"{category_value}_edited")
+        self.category_tag.should_have_text_filtered(f"{category_value}_edited")
 
     def click_archive_category_button(self):
         self.archive_category_button.click_first()
 
-    def check_archived_category_not_visibility(self):
-        self.category_tag.should_not_be_visible()
+    def check_archived_category_not_visibility(self, category_name):
+        self.category_tag.should_not_be_visible_by_text(category_name)
 
     def send_name_in_name_input(self, name):
         self.name_field.fill(name)

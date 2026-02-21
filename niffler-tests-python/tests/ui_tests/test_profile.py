@@ -4,7 +4,7 @@ import allure
 
 @allure.feature("Страница Профиль")
 @allure.title("Добавить новую категорию")
-@pytest.mark.usefixtures("open_profile_page", "archive_category")
+@pytest.mark.usefixtures("open_profile_page", "delete_categories")
 def test_add_new_category(page, category_value, profile_page):
     profile_page.send_category_name(category_value)
     profile_page.press_enter_in_category_name()
@@ -21,7 +21,7 @@ def test_category_input_error_message_if_try_add_category_without_name(page, pro
 
 @allure.feature("Страница Профиль")
 @allure.title("Редактирование категории")
-@pytest.mark.usefixtures("login_user", "archive_category")
+@pytest.mark.usefixtures("login_user", "delete_categories")
 def test_edit_category(create_category, navbar_element, profile_page, header_element, page):
     header_element.click_person_icon()
     navbar_element.click_profile_link()
@@ -33,13 +33,13 @@ def test_edit_category(create_category, navbar_element, profile_page, header_ele
 
 @allure.feature("Страница Профиль")
 @allure.title("Редактирование категории")
-@pytest.mark.usefixtures("login_user", "create_category")
-def test_archive_category(page, profile_page, navbar_element, archive_category_alert, header_element):
+@pytest.mark.usefixtures("login_user",)
+def test_archive_category(page, create_category,  profile_page, navbar_element, archive_category_alert, header_element):
     header_element.click_person_icon()
     navbar_element.click_profile_link()
     profile_page.click_archive_category_button()
     archive_category_alert.click_archive_button()
-    profile_page.check_archived_category_not_visibility()
+    profile_page.check_archived_category_not_visibility(create_category.name)
 
 
 @allure.feature("Страница Профиль")
