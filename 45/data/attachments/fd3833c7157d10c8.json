@@ -1,0 +1,14 @@
+{
+    "id": "9170cc2c-b6ea-4905-84d4-43d648720b53",
+    "spendDate": "2026-02-20T16:01:14.626+00:00",
+    "category": {
+        "id": "d76ea46e-aff0-4e70-b73f-f6eb9dc7920c",
+        "name": "weekly",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1165.94,
+    "description": "The arguments can be primitive data type",
+    "username": "Alex"
+}

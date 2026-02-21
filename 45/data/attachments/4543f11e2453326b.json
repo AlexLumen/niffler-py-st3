@@ -1,0 +1,14 @@
+[
+    {
+        "id": "159aeb81-6bbb-47f6-9b7a-07883853d214",
+        "name": "steven",
+        "username": "Alex",
+        "archived": false
+    },
+    {
+        "id": "d479f28f-7d73-454f-af29-3f0216ca91e6",
+        "name": "chicago_edited",
+        "username": "Alex",
+        "archived": true
+    }
+]

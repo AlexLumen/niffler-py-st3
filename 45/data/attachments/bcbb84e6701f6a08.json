@@ -1,0 +1,16 @@
+[
+    {
+        "id": "e4f76cfc-7474-4cf5-a24f-195020c184a5",
+        "spendDate": "2026-02-19T21:00:00.000+00:00",
+        "category": {
+            "id": "da79efed-a775-46eb-aa75-df0c41a098e1",
+            "name": "sponsor",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 505.75,
+        "description": "Any element of a tuple can be accessed i",
+        "username": "Alex"
+    }
+]

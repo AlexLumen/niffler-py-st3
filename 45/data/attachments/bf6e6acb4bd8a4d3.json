@@ -1,0 +1,14 @@
+{
+    "id": "524a61f4-30fb-4b3e-9dcb-08961b4a19d1",
+    "spendDate": "2026-02-20T16:01:14.334+00:00",
+    "category": {
+        "id": "3834ff4e-0d06-4198-ae9b-3521eee5c151",
+        "name": "sense",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1309.34,
+    "description": "She spent her earliest years reading cla",
+    "username": "Alex"
+}

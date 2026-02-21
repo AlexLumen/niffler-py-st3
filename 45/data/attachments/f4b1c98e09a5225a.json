@@ -1,0 +1,14 @@
+{
+    "id": "84ca6758-5aca-4be7-8379-32e65dfa1797",
+    "spendDate": "2026-02-19T21:00:00.000+00:00",
+    "category": {
+        "id": "fdfcfa33-ebf4-4f33-919e-f99aefd0a207",
+        "name": "call",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 537.12,
+    "description": "Ports are created with the built-in func",
+    "username": "Alex"
+}

@@ -1,0 +1,14 @@
+{
+    "id": "5161ab3a-4d70-4ade-abc8-03838ed0315b",
+    "spendDate": "2026-02-20T16:01:14.408+00:00",
+    "category": {
+        "id": "3758a17f-1dc3-413e-8578-cc87aea2f817",
+        "name": "based",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "EUR",
+    "amount": 944.52,
+    "description": "Tuples are containers for a fixed number",
+    "username": "Alex"
+}
