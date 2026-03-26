@@ -120,7 +120,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./niffler-tests-python/allure-report
-          keep_files: false  # Ключевое изменение - удаляем старые файлы
+          keep_files: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy Allure Report for ${{ github.sha }}'
