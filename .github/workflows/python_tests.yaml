@@ -115,16 +115,16 @@ jobs:
 
       - name: Deploy Allure Report to GitHub Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v4  # Обновлено до v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./niffler-tests-python/allure-report
-          destination_dir: .
-          keep_files: false
+          keep_files: false  # Ключевое изменение - удаляем старые файлы
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Deploy Allure Report for ${{ github.sha }}'
+
 
 #      - name: Load test report history
 #        uses: actions/checkout@v3
