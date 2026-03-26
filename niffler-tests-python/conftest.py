@@ -25,6 +25,7 @@ pytest_plugins = ["fixtures.authorization",
                   "fixtures.navbar",
                   "fixtures.registration",
                   "fixtures.soap_fixtures",
+                  "fixtures.grpc_fixtures",
                   "teadowns.spending",
                   "teadowns.categories"]
 
@@ -72,15 +73,6 @@ def user_db(envs) -> UserDb:
 @pytest.fixture(scope="session")
 def authority_db(envs) -> AuthorityDb:
     return AuthorityDb(envs.auth_db_url)
-
-
-def pytest_addoption(parser):
-    parser.addoption(
-        "--headless"
-    )
-    parser.addoption(
-        "--no-headless"
-    )
 
 
 def allure_logger(config) -> AllureReporter:
@@ -175,3 +167,7 @@ def kafka(envs):
     kafka_servers = envs.kafka_bootstrap_servers
     with KafkaClient(kafka_bootstrap_servers=kafka_servers) as k:
         yield k
+
+
+def pytest_addoption(parser: pytest.Parser) -> None:
+    parser.addoption("--mock", action="store_true", default=False)
