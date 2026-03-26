@@ -5,7 +5,9 @@ from schemas.templates.read_templates import country_iso_code_xml, xsd_response,
 from utils.check_result_operation import check_result_operation
 
 
-@allure.feature('SOAP')
+@allure.epic("Soap")
+@allure.feature('Country service')
+@allure.title('Test CountryName')
 def test_country_name_service(soap_session):
     response = soap_session.request(method='POST', data=country_iso_code_xml('IT'))
     assert response.status_code == 200
@@ -18,7 +20,9 @@ def test_country_name_service(soap_session):
     assert check_result_operation(response.text, 'Italy')
 
 
-@allure.feature('SOAP')
+@allure.epic("Soap")
+@allure.feature('Country service')
+@allure.title('Test CountryISOCode')
 def test_country_iso_service(soap_session):
     response = soap_session.request(method='POST', data=country_name_xml('Italy'))
     assert response.status_code == 200

@@ -3,7 +3,7 @@ import pytest
 
 from utils.assertions import assertion_is_equals, assertion_is_not_equals_in_list
 
-
+@allure.epic("API")
 @allure.feature("Траты")
 @allure.title('Создание Траты')
 @pytest.mark.parametrize("currency", ["KZT", "RUB", "EUR", "USD"])
@@ -25,7 +25,7 @@ def test_add_spend(spends_client, spend_data_for_add, currency,
     assertion_is_equals(spend.currency, spend_data['currency'])
     assertion_is_equals(spend.category.name, spend_data['category'].name)
 
-
+@allure.epic("API")
 @allure.feature("Траты")
 @allure.title('Создание траты  без описания')
 def test_add_spend_without_description(spends_client, spend_data_for_add, currency,
@@ -46,7 +46,7 @@ def test_add_spend_without_description(spends_client, spend_data_for_add, curren
     assertion_is_equals(spend.currency, spend_data['currency'])
     assertion_is_equals(spend.category.name, spend_data['category'].name)
 
-
+@allure.epic("API")
 @allure.feature("Траты")
 @allure.title('Редактирование траты')
 def test_edit_spend(spends_client, spend_data_for_edit, currency, add_spend,
@@ -67,7 +67,7 @@ def test_edit_spend(spends_client, spend_data_for_edit, currency, add_spend,
     assertion_is_equals(spend.currency, spend_data['currency'])
     assertion_is_equals(spend.category.name, spend_data['category'].name)
 
-
+@allure.epic("API")
 @allure.feature("Траты")
 @allure.title('Удаление траты')
 def test_delete_spend(spends_client, spend_data_for_edit, add_spend):
@@ -75,7 +75,7 @@ def test_delete_spend(spends_client, spend_data_for_edit, add_spend):
     spends = spends_client.get_spends()
     assertion_is_not_equals_in_list(add_spend.id, spends)
 
-
+@allure.epic("API")
 @allure.feature("Траты")
 @allure.title('Получение траты')
 def test_get_spend(spends_client, spend_data_for_edit, add_spend):

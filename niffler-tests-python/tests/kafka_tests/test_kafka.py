@@ -9,7 +9,7 @@ pytestmark = [pytest.mark.allure_label("Kafka", label_type="epic")]
 KAFKA_TOPIC = "users"
 
 
-
+@allure.epic("Kafka")
 @id("600001")
 @title("KAFKA: Сообщение с пользователем публикуется в Kafka после успешной регистрации")
 @tag("KAFKA")
@@ -27,12 +27,12 @@ def test_message_should_be_produced_to_kafka_after_successful_registration(user_
         assert json.loads(event.decode('utf8'))['username'] == username
 
 
+@allure.epic("Kafka")
 @id("600002")
 @title("KAFKA: Заполнение userdata исключая auth")
 @tag("KAFKA")
 def test_message_should_be_produced_to_userdata_after_kafka_event(user_data, kafka, authority_db, user_db):
     username = user_data.username
-    print("username", username)
     kafka.sent_event(KAFKA_TOPIC, username)
 
     with step("Check new record in auth db"):

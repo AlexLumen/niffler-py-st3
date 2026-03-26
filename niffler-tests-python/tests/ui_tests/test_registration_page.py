@@ -6,6 +6,7 @@ import pytest
 import allure
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Успешная регистрация")
 def test_success_registration(login_page, registration_page, page, user_data):
@@ -17,6 +18,7 @@ def test_success_registration(login_page, registration_page, page, user_data):
     registration_page.check_success_registration_message()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Отображение сообщения об ошибке при вводе значений в поля недопустимое количество символов")
 @pytest.mark.parametrize(
@@ -41,6 +43,7 @@ def test_visibility_error_message_if_invalid_length_values(login_page, registrat
     registration_page.click_log_in_url()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Отображение сообщения об ошибке если пароли не совпадают")
 def test_visibility_error_message_if_passwords_dont_match(login_page, registration_page, page, user_data):
@@ -52,6 +55,7 @@ def test_visibility_error_message_if_passwords_dont_match(login_page, registrati
     registration_page.check_passwords_should_be_equal_message_on_password_field()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Отображение сообщения об ошибке если пользователь уже существует")
 def test_visibility_error_message_when_user_is_existing(login_page, registration_page, page, envs):
@@ -63,6 +67,7 @@ def test_visibility_error_message_when_user_is_existing(login_page, registration
     registration_page.check_user_already_exist_on_username_field(envs.username)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Переход на страницу авторизации со страницы регистрации")
 def test_go_to_login_page_from_registration_page(login_page, registration_page, page):
@@ -71,6 +76,7 @@ def test_go_to_login_page_from_registration_page(login_page, registration_page, 
     login_page.check_visibility_login_form()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Регистрации")
 @allure.title("Переход на страницу авторизации со страницы успешной регистрации")
 def test_go_to_login_page_from_success_registration_page(login_page, registration_page, page, user_data):

@@ -1,4 +1,3 @@
-
 import allure
 import pytest
 
@@ -7,6 +6,7 @@ from models.enums import CategoryEnum
 from utils.assertions import assertion_is_equals, assertion_in
 
 
+@allure.epic("API")
 @allure.feature("Категории")
 @allure.title('Создание категории')
 @pytest.mark.usefixtures("delete_category")
@@ -17,6 +17,7 @@ def test_add_new_category(spends_client, category_value, envs):
     assertion_is_equals(category.archived, False)
 
 
+@allure.epic("API")
 @allure.feature("Категории")
 @allure.title('Редактирование категории')
 @pytest.mark.parametrize("archived", [False, True])
@@ -33,6 +34,7 @@ def test_edit_category(spends_client, create_category, archived):
     assertion_is_equals(category.archived, category_data.archived)
 
 
+@allure.epic("API")
 @allure.feature("Категории")
 @allure.title('Получить все категории')
 def test_get_all_categories(spends_client, create_category, create_second_category):

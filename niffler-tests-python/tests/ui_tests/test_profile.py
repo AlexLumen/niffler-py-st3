@@ -2,6 +2,7 @@ import pytest
 import allure
 
 
+@allure.epic("UI")
 @allure.feature("Страница Профиль")
 @allure.title("Добавить новую категорию")
 @pytest.mark.usefixtures("open_profile_page", "delete_categories")
@@ -11,6 +12,7 @@ def test_add_new_category(page, category_value, profile_page):
     profile_page.check_added_new_category(category_value)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Профиль")
 @allure.title("Отображение сообщения при попытке создать категорию без названия")
 @pytest.mark.usefixtures("open_profile_page")
@@ -19,6 +21,7 @@ def test_category_input_error_message_if_try_add_category_without_name(page, pro
     profile_page.check_category_input_error_message()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Профиль")
 @allure.title("Редактирование категории")
 @pytest.mark.usefixtures("login_user", "delete_categories")
@@ -31,6 +34,7 @@ def test_edit_category(create_category, navbar_element, profile_page, header_ele
     profile_page.check_edited_category(create_category.name)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Профиль")
 @allure.title("Редактирование категории")
 @pytest.mark.usefixtures("login_user",)
@@ -42,6 +46,7 @@ def test_archive_category(page, create_category,  profile_page, navbar_element, 
     profile_page.check_archived_category_not_visibility(create_category.name)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Профиль")
 @allure.title("Редактирование категории")
 @pytest.mark.usefixtures("open_profile_page")

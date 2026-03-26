@@ -2,6 +2,7 @@ import pytest
 import allure
 
 
+@allure.epic("UI")
 @allure.feature("Страница Траты")
 @allure.title("Отменить добавление траты")
 @pytest.mark.usefixtures("login_user")
@@ -15,6 +16,7 @@ def test_cancel_add_spending(add_spending_page, main_page, header_element,
     main_page.check_spend_not_added(spend_data_for_add.category.name, spend_data_for_add.amount)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Траты")
 @allure.title("Успешное добавление траты")
 @pytest.mark.usefixtures("login_user", "delete_spending")
@@ -31,6 +33,7 @@ def test_success_add_spending(add_spending_page, page, main_page, header_element
     main_page.get_id_attribute_created_spending(spend_data_for_add.category.name)
 
 
+@allure.epic("UI")
 @allure.feature("Страница Траты")
 @allure.title("Сообщение об ошибке при попытке добавить трату без суммы")
 @pytest.mark.usefixtures("login_user")
@@ -45,6 +48,7 @@ def test_empty_amount_message_visibility_if_add_spending_without_amount(add_spen
     add_spending_page.check_empty_amount_message_visibility()
 
 
+@allure.epic("UI")
 @allure.feature("Страница Траты")
 @allure.title("Сообщение об ошибке при попытке добавить трату без категории")
 @pytest.mark.usefixtures("login_user")
