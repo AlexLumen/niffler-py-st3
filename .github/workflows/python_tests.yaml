@@ -68,6 +68,7 @@ jobs:
         run: |
           poetry config virtualenvs.create true
           poetry config virtualenvs.in-project true
+          poetry lock --no-update
           poetry install --no-interaction --no-ansi --no-root
 
       - name: Install Playwright browsers
