@@ -1,0 +1,14 @@
+{
+    "id": "32a5415f-2f45-4a51-9a40-6e066f011a4a",
+    "spendDate": "2026-03-25T20:05:36.364+00:00",
+    "category": {
+        "id": "6936441a-9150-45dd-b10b-c1781448cd8c",
+        "name": "players",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 1153.36,
+    "description": "Where are my pants?",
+    "username": "Alex"
+}

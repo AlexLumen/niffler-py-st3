@@ -1,0 +1,14 @@
+{
+    "id": "2384cee7-86c1-4d65-b075-136ceb812661",
+    "spendDate": "2026-03-25T20:05:36.504+00:00",
+    "category": {
+        "id": "1d9cb05f-937e-4a6f-a10f-afd91e2d5eb8",
+        "name": "peak",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "USD",
+    "amount": 865.11,
+    "description": "The syntax {D1,D2,...,Dn} denotes a tupl",
+    "username": "Alex"
+}

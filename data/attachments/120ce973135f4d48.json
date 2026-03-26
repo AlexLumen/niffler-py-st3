@@ -1,0 +1,16 @@
+[
+    {
+        "id": "c1950863-2cc4-4b11-bb18-99f15d31144d",
+        "spendDate": "2026-03-24T21:00:00.000+00:00",
+        "category": {
+            "id": "8d594475-9727-41d3-bd01-d10c408a39ad",
+            "name": "want",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "KZT",
+        "amount": 1067.11,
+        "description": "They are written as strings of consecuti",
+        "username": "Alex"
+    }
+]

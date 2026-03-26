@@ -1,0 +1,14 @@
+{
+    "id": "0b10c62c-4bd4-4ab3-b138-39436b4f50ba",
+    "spendDate": "2026-03-25T20:05:36.633+00:00",
+    "category": {
+        "id": "deb65fc9-f1b0-4510-b313-b05d8e1d5d85",
+        "name": "grants",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1249.6,
+    "description": "Ports are created with the built-in func",
+    "username": "Alex"
+}

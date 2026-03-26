@@ -1,0 +1,14 @@
+{
+    "id": "2384cee7-86c1-4d65-b075-136ceb812661",
+    "spendDate": "2026-03-25T20:05:36.505+00:00",
+    "category": {
+        "id": "9f4c0f73-d0f4-4175-8e4b-e69c447fcde0",
+        "name": "postal",
+        "username": "Alex",
+        "archived": false
+    },
+    "currency": "RUB",
+    "amount": 1060.94,
+    "description": "Its main implementation is the Glasgow H",
+    "username": "Alex"
+}

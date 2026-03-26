@@ -1,0 +1,16 @@
+[
+    {
+        "id": "0939c518-ec15-4877-9081-d5d78407f7d9",
+        "spendDate": "2026-03-24T21:00:00.000+00:00",
+        "category": {
+            "id": "70ec76ac-4f15-4f33-8b85-e43bc345793d",
+            "name": "watch",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "RUB",
+        "amount": 899.4,
+        "description": "Do you come here often?",
+        "username": "Alex"
+    }
+]

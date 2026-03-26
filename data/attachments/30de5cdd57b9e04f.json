@@ -1,0 +1,16 @@
+[
+    {
+        "id": "af00cbb2-3fc0-471b-9c86-f72f1df3e4a6",
+        "spendDate": "2026-03-24T21:00:00.000+00:00",
+        "category": {
+            "id": "d975999f-18d7-4734-98d9-ab1b94796f17",
+            "name": "holy",
+            "username": "Alex",
+            "archived": false
+        },
+        "currency": "USD",
+        "amount": 875.52,
+        "description": "",
+        "username": "Alex"
+    }
+]
