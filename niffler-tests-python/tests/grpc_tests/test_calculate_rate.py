@@ -10,62 +10,71 @@ from internal.pb.niffler_currency_pb2_pbreflect import NifflerCurrencyServiceCli
 @allure.feature("Курсы валют")
 @allure.title('Конвертация Евро в рубли')
 def test_calculate_rate(grpc_client: NifflerCurrencyServiceClient) -> None:
-    response = grpc_client.calculate_rate(
-        request=CalculateRequest(
-            spendCurrency=CurrencyValues.EUR,
-            desiredCurrency=CurrencyValues.RUB,
-            amount=66.0
+    with allure.step(f"Конвертировать Евро в рубли"):
+        response = grpc_client.calculate_rate(
+            request=CalculateRequest(
+                spendCurrency=CurrencyValues.EUR,
+                desiredCurrency=CurrencyValues.RUB,
+                amount=66.0
+            )
         )
-    )
-    assert response.calculatedAmount == 4752.0
+    with allure.step("Проверить результат конвертации"):
+        assert response.calculatedAmount == 4752.0
 
 
 @allure.epic("grpc")
 @allure.feature("Курсы валют")
 @allure.title('Конвертация без параметра desired_currency')
 def test_calculate_rate_without_desired_currency(grpc_client: NifflerCurrencyServiceClient) -> None:
-    try:
-        grpc_client.calculate_rate(
-            request=CalculateRequest(
-                spendCurrency=CurrencyValues.EUR,
-                amount=100.0
+    with allure.step(f"Отправить запрос конвертации без параметра desired_currency"):
+        try:
+            grpc_client.calculate_rate(
+                request=CalculateRequest(
+                    spendCurrency=CurrencyValues.EUR,
+                    amount=100.0
+                )
             )
-        )
-    except grpc.RpcError as e:
-        assert e.code() == grpc.StatusCode.UNKNOWN
-        assert e.details() == "Application error processing RPC"
+
+        except grpc.RpcError as e:
+            with allure.step("Проверить получение ошибки"):
+                assert e.code() == grpc.StatusCode.UNKNOWN
+                assert e.details() == "Application error processing RPC"
 
 
 @allure.epic("grpc")
 @allure.feature("Курсы валют")
 @allure.title('Конвертация без параметра amount')
 def test_calculate_rate_without_amount(grpc_client: NifflerCurrencyServiceClient, ) -> None:
-    try:
-        grpc_client.calculate_rate(
-            request=CalculateRequest(
-                spendCurrency=CurrencyValues.EUR,
-                desiredCurrency=CurrencyValues.RUB
+    with allure.step(f"Отправить запрос конвертации без параметра amount"):
+        try:
+            grpc_client.calculate_rate(
+                request=CalculateRequest(
+                    spendCurrency=CurrencyValues.EUR,
+                    desiredCurrency=CurrencyValues.RUB
+                )
             )
-        )
-    except grpc.RpcError as e:
-        assert e.code() == grpc.StatusCode.UNKNOWN
-        assert e.details() == "Application error processing RPC"
+        except grpc.RpcError as e:
+            with allure.step("Проверить получение ошибки"):
+                assert e.code() == grpc.StatusCode.UNKNOWN
+                assert e.details() == "Application error processing RPC"
 
 
 @allure.epic("grpc")
 @allure.feature("Курсы валют")
 @allure.title('Конвертация без параметра spendCurrency')
 def test_calculate_rate_without_spend_currency(grpc_client: NifflerCurrencyServiceClient, ) -> None:
-    try:
-        grpc_client.calculate_rate(
-            request=CalculateRequest(
-                desiredCurrency=CurrencyValues.RUB,
-                amount=100.0
+    with allure.step(f"Отправить запрос конвертации без параметра spendCurrency"):
+        try:
+            grpc_client.calculate_rate(
+                request=CalculateRequest(
+                    desiredCurrency=CurrencyValues.RUB,
+                    amount=100.0
+                )
             )
-        )
-    except grpc.RpcError as e:
-        assert e.code() == grpc.StatusCode.UNKNOWN
-        assert e.details() == "Application error processing RPC"
+        except grpc.RpcError as e:
+            with allure.step("Проверить получение ошибки"):
+                assert e.code() == grpc.StatusCode.UNKNOWN
+                assert e.details() == "Application error processing RPC"
 
 
 @pytest.mark.parametrize("spend, spend_currency, desired_currency, expected_result", [
@@ -85,14 +94,16 @@ def test_currency_conversions_usd(
         desired_currency: CurrencyValues,
         expected_result: float
 ):
-    response = grpc_client.calculate_rate(
-        request=CalculateRequest(
-            spendCurrency=spend_currency,
-            desiredCurrency=desired_currency,
-            amount=spend
+    with allure.step(f"Конвертировать валюту {spend_currency} в {desired_currency}"):
+        response = grpc_client.calculate_rate(
+            request=CalculateRequest(
+                spendCurrency=spend_currency,
+                desiredCurrency=desired_currency,
+                amount=spend
+            )
         )
-    )
-    assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
+    with allure.step("Проверить результат конвертации"):
+        assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
 
 
 @pytest.mark.parametrize("spend, spend_currency, desired_currency, expected_result", [
@@ -113,14 +124,16 @@ def test_currency_conversions_eur(
         desired_currency: CurrencyValues,
         expected_result: float
 ):
-    response = grpc_client.calculate_rate(
-        request=CalculateRequest(
-            spendCurrency=spend_currency,
-            desiredCurrency=desired_currency,
-            amount=spend
+    with allure.step(f"Конвертировать валюту {spend_currency} в {desired_currency}"):
+        response = grpc_client.calculate_rate(
+            request=CalculateRequest(
+                spendCurrency=spend_currency,
+                desiredCurrency=desired_currency,
+                amount=spend
+            )
         )
-    )
-    assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
+    with allure.step("Проверить результат конвертации"):
+        assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
 
 
 @pytest.mark.parametrize("spend, spend_currency, desired_currency, expected_result", [
@@ -137,11 +150,13 @@ def test_currency_conversions_kzt(
         desired_currency: CurrencyValues,
         expected_result: float
 ):
-    response = grpc_client.calculate_rate(
-        request=CalculateRequest(
-            spendCurrency=spend_currency,
-            desiredCurrency=desired_currency,
-            amount=spend
+    with allure.step(f"Конвертировать валюту {spend_currency} в {desired_currency}"):
+        response = grpc_client.calculate_rate(
+            request=CalculateRequest(
+                spendCurrency=spend_currency,
+                desiredCurrency=desired_currency,
+                amount=spend
+            )
         )
-    )
-    assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
+    with allure.step("Проверить результат конвертации"):
+        assert response.calculatedAmount == expected_result, f"Expected {expected_result}"
