@@ -98,4 +98,5 @@ allure serve allure-results
 ```text
 Проект настроен на автоматическое выполнение тестов через GitHub Actions при каждом pull request в ветку main, 
  а так же доступен ручной запуск через интерфейс GitHub.
+ https://alexlumen.github.io/niffler-py-st3/index.html# - Отчет о тестировании можно посмотреть здесь
 ```
